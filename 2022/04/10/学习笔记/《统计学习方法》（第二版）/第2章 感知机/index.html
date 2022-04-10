@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Seeyourmind</title>
+  <title>第2章 感知机 | Seeyourmind</title>
 
   
 
@@ -108,16 +108,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">第2章 感知机</h1>
           <h2 class="title-sub-wrap">
             <strong>FZY</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-04-10T12:23:20.307Z" itemprop="datePublished">2022-04-10</time>
+            <time  class="article-date" datetime="2022-04-10T13:16:27.000Z" itemprop="datePublished">2022-04-10</time>
           </h2>
           <ul class="wrap-list dark">
   
+    <li><a href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">📒 《统计学习方法》（第二版）</a></li>
+  
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">🏷️ 学习笔记</a></li>
   
 </ul>
         </div>
@@ -141,19 +145,58 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="2-1-感知机模型"><a href="#2-1-感知机模型" class="headerlink" title="2.1 感知机模型"></a>2.1 感知机模型</h3><p>$$<br>f(x)&#x3D;sign(w\cdot x+b),\ sign(x)&#x3D;\begin{cases}+1,x\ge0\-1,x\lt0\end{cases}<br>$$</p>
+<p>对于特征空间$\mathbf{R}^n$中的一个超平面$S$，其中$w$是超平面的法向量，$b$是超平面的截距。</p>
+<h3 id="2-2-感知机学习策略"><a href="#2-2-感知机学习策略" class="headerlink" title="2.2 感知机学习策略"></a>2.2 感知机学习策略</h3><ul>
+<li>数据集的线性可分性</li>
+<li>损失函数是参数$w$和$b$连续可导函数：点到超平面的距离 $\frac{1}{|w|}|w\cdot x_i+b|$</li>
+<li>误分类数据满足：$-y_i(w\cdot x_i+b)\gt0$，$y(w\cdot x+b)$称为样本点的函数间隔</li>
+</ul>
+<h3 id="2-3-感知机学习算法"><a href="#2-3-感知机学习算法" class="headerlink" title="2.3 感知机学习算法"></a>2.3 感知机学习算法</h3><p><strong>原始形式</strong></p>
+<blockquote>
+<p><strong>输入：</strong>数据集、学习率$\eta\ (0\lt\eta\le1)$<br><strong>输出：</strong>$w,b,f(x)&#x3D;sign(w\cdot x+b)$</p>
+<ol>
+<li><p>选取初始值$w_0,b_0$</p>
+</li>
+<li><p>在训练集中选取数据$(x_i,y_i)$</p>
+</li>
+<li><p>如果$y_i(w\cdot x_i+b)\le0$</p>
+<p>$$w\leftarrow w+\eta y_i x_i\<br>b\leftarrow b+\eta y_i$$</p>
+</li>
+<li><p>转至2，直到无误分类点</p>
+</li>
+</ol>
+</blockquote>
+<p>首先任意选取一个超平面，然后用梯度下降法不断极小化目标函数，在一个过程中一次随机选取一个误分类点使其梯度下降。</p>
+<p><strong>Novikoff定理</strong></p>
+<ol>
+<li><p>$\exists:y_i(\hat{W}<em>{opt}\cdot\hat{x}<em>i)&#x3D;y_i(W</em>{opt}\cdot x_i+b</em>{opt})\ge\gamma,|\hat{W}_{opt}|&#x3D;1$</p>
+</li>
+<li><p>在训练集上的误分类次数$k$满足不等式：$k\le(\frac{R}{\gamma})^2,R&#x3D;\max_{1\le i\le N}|\hat{x}_i|^2$</p>
+</li>
+</ol>
+<p>说明误分类有上界；训练集可分时，原始形式收敛，不可分时，不收敛；2可以近似看成线段划分，即特征空间最多可以划分成K个。</p>
+<p><code>当训练集可分时，感知机学习算法存在无穷多解，由于不同的初始值或不同的迭代顺序而有所不同。</code></p>
+<p><strong>对偶形式</strong></p>
+<blockquote>
+<p><strong>输入：</strong>数据集、学习率$\eta\ (0\lt\eta\le1)$<br><strong>输出：</strong>$\alpha,b,f(x)&#x3D;sign(\sum_{j&#x3D;1}^N\alpha_j y_j x_j\cdot x+b)$</p>
+<ol>
+<li><p>选取初始值$a\leftarrow0,b\leftarrow0$</p>
+</li>
+<li><p>在训练集中选取数据$(x_i,y_i)$</p>
+</li>
+<li><p>如果$y_i(\sum_{j&#x3D;1}^N\alpha_j y_j x_j\cdot x_i+b)\le0$</p>
+</li>
+</ol>
+<p>  $$\alpha_i\leftarrow\alpha_i+\eta\<br>  b\leftarrow b+\eta y_i$$</p>
+<ol start="4">
+<li>转至2，直到无误分类点</li>
+</ol>
+</blockquote>
+<p><strong>基本思想：</strong>将$w$和$b$表示为实例$x_i$和标记$y_i$的线性组合，通过求解其系数而得到$w$和$b$。实例点更新次数越多，意味着它距离分类超平面越近，也就越难正确分类。对偶形式中训练实例仅以內积$x_j\cdot x_i$的形式出现（Gram矩阵）。</p>
+<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><p><strong>1. 为什么感知机不能表示异或</strong></p>
+<p><strong>2. 样本集线性可分的充要条件是正实例点击所构成的凸壳$^1$与负实例所构成的凸壳互不相交</strong></p>
+<p>$^1$设集合$S\subset\mathbf{R}^n$是由$\mathbf{R}^n$中的$k$个点组成的集合，即$S&#x3D;{x_1,x_2,\cdots,x_k}$ 定义$S$的凸壳$conv(S)$为：<br>$$<br>conv(S)&#x3D;\left{x&#x3D;\sum_{i&#x3D;1}^k{\lambda_i x_i}\mid\sum_{i&#x3D;1}^k{\lambda_i&#x3D;1},\lambda_i\ge0,i&#x3D;1,2,\cdots,k\right}<br>$$<br><code>最小凸多边形、点集合的边界所围成的区域、点集的线性组合</code></p>
 
       </section>
 
@@ -164,12 +207,10 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro"></div>
-    
     <div class="card-text">
       
-        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC1%E7%AB%A0%20%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">第1章 统计学习及监督学习概论</h2>
+        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">第4章 朴素贝叶斯法</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -177,6 +218,20 @@
   </article>
 </div>
           
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2022/04/10/Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hexo搭建GitHub个人博客</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
         </nav>
       

@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Seeyourmind</title>
+  <title>第4章 朴素贝叶斯法 | Seeyourmind</title>
 
   
 
@@ -108,16 +108,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">第4章 朴素贝叶斯法</h1>
           <h2 class="title-sub-wrap">
             <strong>FZY</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-04-10T12:23:20.307Z" itemprop="datePublished">2022-04-10</time>
+            <time  class="article-date" datetime="2022-04-10T13:17:27.000Z" itemprop="datePublished">2022-04-10</time>
           </h2>
           <ul class="wrap-list dark">
   
+    <li><a href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">📒 《统计学习方法》（第二版）</a></li>
+  
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">🏷️ 学习笔记</a></li>
   
 </ul>
         </div>
@@ -141,19 +145,14 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="1-基本方法"><a href="#1-基本方法" class="headerlink" title="1.基本方法"></a>1.基本方法</h3><p>朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.</p>
+<p>先学习先验概率分布$P(Y&#x3D;c_k)$及条件概率分布$P(X&#x3D;x|Y&#x3D;c_k)&#x3D;P(X^{(1)}&#x3D;x^{(1)},X^{(2)}&#x3D;x^{(2)},\cdots,X^{(N)}&#x3D;x^{(n)}|Y&#x3D;c_k)$从而得到联合概率分布$P(X,Y)$<br>由于条件概率分布有指数级数量的参数，所以对条件概率分布做了<strong>条件独立性假设</strong><code>用于分类的特征在类确定的条件下都是条件独立的</code>：$P(X&#x3D;x|Y&#x3D;c_k)&#x3D;P(X^{(1)}&#x3D;x^{(1)},X^{(2)}&#x3D;x^{(2)},\cdots,X^{(N)}&#x3D;x^{(n)}|Y&#x3D;c_k)&#x3D;\prod_{j&#x3D;1}^n{P(X^j&#x3D;x^j|Y&#x3D;c_k)}$<br>分类器：$y&#x3D;f(x)&#x3D;\arg\max_{c_k}\frac{P(Y&#x3D;c_k)\Pi_{j}P(X^{j}&#x3D;x^j|Y&#x3D;c_k)}{\sum_k{P(Y&#x3D;c_k)\Pi_{j}P(X^{j}&#x3D;x^j|Y&#x3D;c_k)}}$</p>
+<p><strong>后验概率最大化的含义</strong></p>
+<p>期望风险最小化准则变为了后验概率最大化准则<br>$$<br>\begin{align}<br>f(x)&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}\sum_{k&#x3D;1}^K{L(c_k,y)P(c_k|X&#x3D;x)}\<br>&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}\sum_{k&#x3D;1}^K{P(y\neq c_k|X&#x3D;x)}\<br>&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}{(1-P(y&#x3D;c_k|X&#x3D;x))}\<br>&amp;&#x3D;\arg\max_{y\in\mathcal{Y}}{P(y&#x3D;c_k|X&#x3D;x)}\<br>\end{align}<br>$$</p>
+<h3 id="2-朴素贝叶斯法的参数估计"><a href="#2-朴素贝叶斯法的参数估计" class="headerlink" title="2.朴素贝叶斯法的参数估计"></a>2.朴素贝叶斯法的参数估计</h3><p><strong>极大似然估计</strong></p>
+<p>估计先验概率：$P(Y&#x3D;c_k)&#x3D;\frac{\sum_{i&#x3D;1}^N{I(y_i&#x3D;c_k)}}{N},I为指示函数$<br>估计条件概率：$P(X^j&#x3D;a_{jl}|Y&#x3D;c_k)&#x3D;\frac{\sum_{i&#x3D;1}^{N}{I(x_i^j&#x3D;a_{jl},y_i&#x3D;c_k)}}{\sum_{i&#x3D;1}^{N}{I(y_i&#x3D;c_k)}}$<br>会出现所有估计概率值为0的情况</p>
+<p><strong>贝叶斯估计</strong></p>
+<p>估计先验概率：$P_\lambda(Y&#x3D;c_k)&#x3D;\frac{\sum_{i&#x3D;1}^N{I(y_i&#x3D;c_k)}+\lambda}{N+K\lambda},I为指示函数$<br>估计条件概率：$P_\lambda(X^j&#x3D;a_{jl}|Y&#x3D;c_k)&#x3D;\frac{\sum_{i&#x3D;1}^N{I(x_i^j&#x3D;a_{jl},y_i&#x3D;c_k)+\lambda}}{\sum_{i&#x3D;1}^N{I(y_i&#x3D;c_k)+S_j\lambda}}$<br>$\lambda&#x3D;0$就是<code>极大似然估计</code>，$\lambda&#x3D;1$就是<code>拉普拉斯平滑</code></p>
 
       </section>
 
@@ -164,12 +163,10 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro"></div>
-    
     <div class="card-text">
       
-        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC1%E7%AB%A0%20%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">第1章 统计学习及监督学习概论</h2>
+        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">第3章 K近邻法</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -177,6 +174,20 @@
   </article>
 </div>
           
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC2%E7%AB%A0%20%E6%84%9F%E7%9F%A5%E6%9C%BA/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">第2章 感知机</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
         </nav>
       

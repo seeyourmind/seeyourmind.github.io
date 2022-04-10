@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Seeyourmind</title>
+  <title>第1章 统计学习及监督学习概论 | Seeyourmind</title>
 
   
 
@@ -57,7 +57,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro)"></div>
   
 
   <!-- navbar -->
@@ -108,16 +108,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">第1章 统计学习及监督学习概论</h1>
           <h2 class="title-sub-wrap">
             <strong>FZY</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-04-10T12:23:20.307Z" itemprop="datePublished">2022-04-10</time>
+            <time  class="article-date" datetime="2022-04-10T13:15:27.000Z" itemprop="datePublished">2022-04-10</time>
           </h2>
           <ul class="wrap-list dark">
   
+    <li><a href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">📒 《统计学习方法》（第二版）</a></li>
+  
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">🏷️ 学习笔记</a></li>
   
 </ul>
         </div>
@@ -141,19 +145,49 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="1-统计学习基本分类"><a href="#1-统计学习基本分类" class="headerlink" title="1. 统计学习基本分类"></a>1. 统计学习基本分类</h3><p><strong>监督学习</strong>    <code>学习输入到输出的映射的统计规律</code></p>
+<blockquote>
+<p>1-输入空间、特征空间和输出空间：特征连续预测是回归，离散预测是分类<br>2-联合概率分布：假设输入与输出服从联合分布（关于数据的基本假设）<br>3-假设空间：模型属于由输入空间到输出空间的映射的集合，意味着学习范围的确定。模型可以是概率模型（$P(Y|X)$）或非概率模型$Y&#x3D;f(X)$</p>
+</blockquote>
+<p><strong>无监督学习</strong>    <code>学习数据中的统计规律或潜在结构</code></p>
+<blockquote>
+<p>旨在从假设空间中选出在给定评价标准下的最优模型<br>模型可以实现对数据的聚类、降维或概率估计</p>
+</blockquote>
+<p><strong>强化学习</strong>    <code>学习最优的序贯决策</code></p>
+<blockquote>
+<p>强化学习的马尔可夫决策过程是状态、奖励、动作序列上的随机过程，$&lt;S,A,P,r,\gamma&gt;$<br><strong>S</strong>tate、<strong>A</strong>ction、transition <strong>P</strong>robability ($P(s^\prime|s,a)&#x3D;P(s_{t+1}&#x3D;s^\prime|s_t&#x3D;s,a_t&#x3D;a)$)、<strong>r</strong>eward function ($r(s,a)&#x3D;E(r_{t+1}|s_t&#x3D;s,a_t&#x3D;a)$)、discount factor ($\gamma\in[0,1]$)<br>策略$\pi$定义为给定状态下动作的函数$a&#x3D;f(s)$或$P(a|s)$<br>状态价值函数定义为策略$\pi$从某一个状态$s$开始的长期累积奖励的数学期望<br>动作价值函数定义为策略$\pi$从某一个状态$s$和动作$a$开始的长期累积奖励的数学期望</p>
+<p>强化学习方法有基于策略的(policy-based)、基于价值的(value-based)无模型(model-free)方法和有模型(model-based)方法。<br>model-based直接学习马尔科夫决策过程<br>policy-based model-free求解最优策略$\pi^*$<br>value-based model-free求解最优价值函数$q^*(s,a)$</p>
+</blockquote>
+<p><strong>半监督学习</strong>    <code>利用未标注数据中的信息辅助标注数据进行监督学习</code></p>
+<p><strong>主动学习</strong>     <code>找出对学习最有帮助的实例让teacher标注</code></p>
+<h3 id="2-按模型分类"><a href="#2-按模型分类" class="headerlink" title="2. 按模型分类"></a>2. 按模型分类</h3><p><strong>概率模型与非概率模型</strong></p>
+<blockquote>
+<p><strong>基本概率公式</strong><br>加法规则：$P(x)&#x3D;\sum_yP(x,y)$<br>乘法规则：$P(x,y)&#x3D;P(x)P(y|x)$</p>
+</blockquote>
+<p><strong>线性模型与非线性模型</strong></p>
+<p><strong>参数化模型与非参数化模型</strong></p>
+<p>参数化模型假设模型参数的维度固定，模型可以由有限维参数完全刻画；非参数化模型假设模型参数的维度不固定或者说无穷大，随着训练数据量的增加而不断增大。</p>
+<h3 id="3-按算法分类"><a href="#3-按算法分类" class="headerlink" title="3. 按算法分类"></a>3. 按算法分类</h3><p><strong>在线学习与批量学习</strong></p>
+<p>在线学习每次接受一个样本，进行预测，之后学习模型，不断重复；批量学习一次接受所有数据，学习模型，之后进行预测。<br>在线学习可以是监督学习，也可以是无监督学习，强化学习本身就拥有在线学习的特点。</p>
+<h3 id="4-按技巧分类"><a href="#4-按技巧分类" class="headerlink" title="4. 按技巧分类"></a>4. 按技巧分类</h3><p><strong>贝叶斯学习</strong></p>
+<p>在概率模型学习和推理中，利用贝叶斯定理计算在给定数据条件下模型的条件概率，即后验概率，并应用这个原理进行模型的估计，以及对数据的预测。</p>
+<p>贝叶斯估计和极大似然估计代表着统计学中贝叶斯学派和频率学派对统计的不同认识。<br>假设先验分布是均匀分布，取后验概率最大，就能从<code>贝叶斯估计</code>得到<code>极大似然估计</code>。<br>$$<br>D\rightarrow{极大似然估计}\rightarrow\hat{\theta&#x3D;\arg\max_{\theta}P(D|\theta)}\ [图像是只在\hat{\theta}有值]\<br>D\rightarrow{贝叶斯估计}\rightarrow\hat{P}(\theta|D)&#x3D;\frac{P(\theta)P(D|\theta)}{P(D)}\ [图像是正态分布曲线]<br>$$<br><strong>核方法</strong></p>
+<p>核方法是使用核函数表示和学习费线性模型的一种机器学习方法。有一些线性模型的学习方法基于相似度计算&lt;向量內积&gt;，核方法可以把他们扩展到非线性模型的学习中，使其应用更广泛。<br>线性转非线性直接做是显式的定义输入空间到特征空间的映射，在特征空间做內积；核方法不显式的定义这个映射，而是定义核函数&lt;映射之后在特征空间的內积&gt;。<br>$$<br>\frac{输入空间}{x_1,x_2}\stackrel{映射函数\psi}{\longrightarrow}\frac{特征空间}{\psi(x_1),\psi(x_2)}\<br>核函数定义在输入空间\frac{输入空间}{K(x_1,x_2)} \ K(x_1,x_2)&#x3D;&lt;\psi(x_1),\psi(x_2)&gt;<br>$$</p>
+<h3 id="5-统计学习方法三要素"><a href="#5-统计学习方法三要素" class="headerlink" title="5. 统计学习方法三要素"></a>5. 统计学习方法三要素</h3><p><strong>模型</strong></p>
+<p>在监督学习过程中，模型就是所要学习的条件概率分布或决策函数，模型的假设空间（hypothesis space）包含所有可能的条件概率分布或决策函数。</p>
+<p><strong>策略</strong></p>
+<p>损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。<br>损失函数是$f(X)$和$Y$的<strong>非负</strong>实值函数，记作$L(Y,f(X))$；损失函数的期望是模型$f(X)$关于联合分布$P(x,Y)$的平均意义下的损失，称为风险函数或期望损失$R_{exp}(f)$。<br>$$<br>R_{exp}(f)&#x3D;E_P[L(Y,f(X))]&#x3D;\int_{\mathcal{X}\times\mathcal{Y}}{L(y,f(x))P(x,y)dxdy}<br>$$<br>由于联合分布未知，监督学习就是为了学习联合分布，所以监督学习是一个ill-formed problem。根据大数定律，当样本容量$N$趋于无穷时，经验风险$R_{emp}$趋近于期望风险$R_{exp}$<br>$$<br>R_{emp}(f)&#x3D;\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(x_i))}<br>$$<br><code>大数定律：说如果统计数据足够大,那么事物出现的频率就能无限接近它的期望值。</code></p>
+<p>由于现实中训练样本数目有限，甚至很小，所以需要矫正。</p>
+<blockquote>
+<p><strong>经验风险最小化</strong><br>$\min_{f\in{F}}\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(x_i))}$<br>当模型是条件概率分布、损失函数是对数损失函数时，经验风险最小化等价于<code>极大似然估计</code><br><strong>结构风险最小化</strong><br>$R_{srm}(f)&#x3D;\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(xi))+\lambda J(f)},\ \lambda\ge0$<br>$J(f)$为模型的复杂度，是定义在假设空间的泛函；$\lambda$用以权衡经验风险和模型复杂度<br>当模型是条件概率分布、损失函数是对数损失函数时，模型复杂度由模型的先验概率表示时，结构风险最小化等价于<code>最大后验概率估计</code></p>
+</blockquote>
+<p><strong>算法</strong></p>
+<h3 id="6-模型评估与模型选择"><a href="#6-模型评估与模型选择" class="headerlink" title="6.模型评估与模型选择"></a>6.模型评估与模型选择</h3><p>通常将学习方法对未知数据的预测能力称为泛化能力</p>
+<p><strong>模型选择方法：</strong>正则化和交叉验证</p>
+<p>正则化符合奥卡姆剃刀（Occam’s razor）原理<br><code>如无必要，勿增实体，即简单有效原理</code></p>
+<p>交叉验证：简单交叉（分成两部分）、S折交叉（分成S分）、留一交叉（S&#x3D;N）</p>
+<h3 id="7-泛化误差上界"><a href="#7-泛化误差上界" class="headerlink" title="7.泛化误差上界"></a>7.泛化误差上界</h3><p>$$<br>对二分类问题，泛化误差R(f)：R(f)\le\hat{R}(f)+\epsilon(d,N,\delta),\ \epsilon(d,N,\delta)&#x3D;\sqrt{\frac{1}{2N}(\log{d}+\log\frac{1}{\delta})}\<br>Hoeffding不等式：\forall{t\gt0},P(|\overline{X}-E[\overline{X}]|\ge t)\le2exp(-\frac{2n^2t^2}{\sum_{i&#x3D;1}^{n}(b_i-a_i)^2})<br>$$</p>
+<h3 id="8-监督学习应用"><a href="#8-监督学习应用" class="headerlink" title="8.监督学习应用"></a>8.监督学习应用</h3><p>TP（正确（T）预测为正样例（P））——正预测为正<br>FN（错误（F）预测为负样本（N））——正预测为负<br>FP（错误（F）预测为正样例（P））——负预测为正<br>TN（正确（T）预测为负样本（N））——负预测为负<br>准确率：预测为正的里面真实为正的<br>召回率：真实为正的里面预测为正的</p>
 
       </section>
 
@@ -164,12 +198,10 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro"></div>
-    
     <div class="card-text">
       
-        <a href="/2022/04/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC1%E7%AB%A0%20%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">第1章 统计学习及监督学习概论</h2>
+        <a href="/2022/04/10/Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hexo搭建GitHub个人博客</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -177,6 +209,20 @@
   </article>
 </div>
           
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2022/04/10/hello-world/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hello World</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
         </nav>
       
@@ -231,6 +277,18 @@
 </section>
 
       
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">1. 统计学习基本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8C%89%E6%A8%A1%E5%9E%8B%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">2. 按模型分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8C%89%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">3. 按算法分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8C%89%E6%8A%80%E5%B7%A7%E5%88%86%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">4. 按技巧分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-number">5.</span> <span class="toc-text">5. 统计学习方法三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-number">6.</span> <span class="toc-text">6.模型评估与模型选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="toc-number">7.</span> <span class="toc-text">7.泛化误差上界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%BA%94%E7%94%A8"><span class="toc-number">8.</span> <span class="toc-text">8.监督学习应用</span></a></li></ol>
+  </div>
+</section>
+
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
