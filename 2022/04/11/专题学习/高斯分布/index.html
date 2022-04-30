@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     
-    <title>凸优化 | Seeyourmind</title>
+    <title>高斯分布 | Seeyourmind</title>
 
     <meta name="description" content="Seeyourmind">
     <meta name="keywords" content="">
@@ -15,21 +15,21 @@
 
     <meta property="og:locale" content="cn,en,ja,default" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content= "凸优化 | Seeyourmind"  />
+    <meta property="og:title" content= "高斯分布 | Seeyourmind"  />
     <meta property="og:description" content= "Seeyourmind" />
-    <meta property="og:url" content="http://example.com/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%87%B8%E4%BC%98%E5%8C%96/index.html" />
+    <meta property="og:url" content="http://example.com/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="FZY" />
     <meta property="article:publisher" content="" />
     <meta property="og:description" content="Seeyourmind" />
-    <meta name="twitter:title" content="凸优化 | Seeyourmind"/>
+    <meta name="twitter:title" content="高斯分布 | Seeyourmind"/>
     <meta name="twitter:description" content="Seeyourmind"/>
     <script type="application/ld+json">
         {
             "description": "Seeyourmind",
             "author": { "@type": "Person", "name": "FZY" },
             "@type": "BlogPosting",
-            "url": "http://example.com/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%87%B8%E4%BC%98%E5%8C%96/index.html",
+            "url": "http://example.com/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/index.html",
             "publisher": {
             "@type": "Organization",
             "logo": {
@@ -38,11 +38,11 @@
             },
             "name": "FZY"
             },
-            "headline": "凸优化 | Seeyourmind",
-            "datePublished": "2022-04-11T13:15:27.000Z",
+            "headline": "高斯分布 | Seeyourmind",
+            "datePublished": "2022-04-11T08:15:27.000Z",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "http://example.com/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%87%B8%E4%BC%98%E5%8C%96/index.html"
+                "@id": "http://example.com/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/index.html"
             },
             "@context": "http://schema.org"
         }
@@ -182,8 +182,8 @@
         <div class="main">
             <section class="inner">
                 <section class="inner-main">
-                    <div class="tweet">
-    <article id="tweet-cl1ue36le000d58tx744lfomb" class="article article-type-tweet" itemscope
+                    <div class="post">
+    <article id="post-cl2lcnowd000vxgtxc1s3hi6o" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -195,11 +195,21 @@
         
 
         
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      高斯分布
+    </h1>
+  
 
-        <div class="article-more-info article-more-info-tweet hairline">
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-04-11T13:15:27.000Z" itemprop="datePublished">2022-04-11</time>
+  <time datetime="2022-04-11T08:15:27.000Z" itemprop="datePublished">2022-04-11</time>
 </div>
 
             
@@ -223,7 +233,11 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p><strong>To Do</strong></p>
+            <h3 id="单变量高斯分布-univariate-Gaussian"><a href="#单变量高斯分布-univariate-Gaussian" class="headerlink" title="单变量高斯分布(univariate Gaussian )"></a>单变量高斯分布(univariate Gaussian )</h3><p>$$<br>f(x)&#x3D;\frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right)<br>$$</p>
+<h3 id="单高斯分布"><a href="#单高斯分布" class="headerlink" title="单高斯分布"></a>单高斯分布</h3><p>$$<br>N(x ; u, \Sigma)&#x3D;\frac{1}{\sqrt{2 \pi}|\Sigma|} \exp \left[-\frac{1}{2}(x-u)^{T}\Sigma^{-1} (x-u)\right]<br>$$</p>
+<p>单高斯与单变量高斯的区别在于前者维度为$d$，后者维度为$1$。对于单高斯模型，$\mu$通常代表训练样本的均值，$\Sigma$代表样本的方差。</p>
+<h3 id="高斯混合模型（GMM）"><a href="#高斯混合模型（GMM）" class="headerlink" title="高斯混合模型（GMM）"></a>高斯混合模型（GMM）</h3><p>$$<br>\operatorname{Pr}(x)&#x3D;\Sigma_{k&#x3D;1}^{K} \pi_{k} N\left(x ; u_{k}, \Sigma_{k}\right)<br>$$</p>
+<p>依据全概率公式，$\pi_{k}$是选中参数$u_{k}$和$\Sigma_{k}$的概率，又称权重因子。EM算法用于优化GMM。</p>
 
         </div>
 
@@ -232,12 +246,35 @@
     
 
     
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
 <nav class="article-nav">
   
+    <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E7%A9%BA%E9%97%B4%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          科学空间笔记
+        
+      </div>
+    </a>
   
-    <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%B8%8C%E5%B0%94%E4%BC%AF%E7%89%B9%E7%A9%BA%E9%97%B4/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC5%E7%AB%A0%20%E5%86%B3%E7%AD%96%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">希尔伯特空间</div>
+      <div class="article-nav-title">第5章 决策树</div>
     </a>
   
 </nav>
@@ -246,15 +283,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=凸优化 - Seeyourmind&url=http%3A%2F%2Fexample.com%2F2022%2F04%2F11%2F%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F%25E4%25B8%2593%25E9%25A2%2598%25E5%25AD%25A6%25E4%25B9%25A0%2F%25E5%2587%25B8%25E4%25BC%2598%25E5%258C%2596%2F">
+            href="https://twitter.com/share?text=高斯分布 - Seeyourmind&url=http%3A%2F%2Fexample.com%2F2022%2F04%2F11%2F%25E4%25B8%2593%25E9%25A2%2598%25E5%25AD%25A6%25E4%25B9%25A0%2F%25E9%25AB%2598%25E6%2596%25AF%25E5%2588%2586%25E5%25B8%2583%2F">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=凸优化 - Seeyourmind&u=http%3A%2F%2Fexample.com%2F2022%2F04%2F11%2F%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F%25E4%25B8%2593%25E9%25A2%2598%25E5%25AD%25A6%25E4%25B9%25A0%2F%25E5%2587%25B8%25E4%25BC%2598%25E5%258C%2596%2F">
+            href="https://www.facebook.com/sharer.php?title=高斯分布 - Seeyourmind&u=http%3A%2F%2Fexample.com%2F2022%2F04%2F11%2F%25E4%25B8%2593%25E9%25A2%2598%25E5%25AD%25A6%25E4%25B9%25A0%2F%25E9%25AB%2598%25E6%2596%25AF%25E5%2588%2586%25E5%25B8%2583%2F">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=凸优化 - Seeyourmind&url=http://example.com/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%87%B8%E4%BC%98%E5%8C%96/&pic=">
+            href="https://service.weibo.com/share/share.php?title=高斯分布 - Seeyourmind&url=http://example.com/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
@@ -294,12 +331,18 @@
 <div class="widget" id="widget">
     
       
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
     
       
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">《统计学习方法》（第二版）</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">专题学习</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VScode%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">VScode使用教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">《统计学习方法》（第二版）</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">专题学习</a></li></ul>
     </div>
   </div>
 
@@ -309,7 +352,7 @@
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-issue/" rel="tag">VScode.issue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
     </div>
   </div>
 
@@ -322,23 +365,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</a>
+            <a href="/2022/04/30/VScode-LaTex-no-bib/">解决LaTeX不显示参考文献问题</a>
           </li>
         
           <li>
-            <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%B8%8C%E5%B0%94%E4%BC%AF%E7%89%B9%E7%A9%BA%E9%97%B4/">希尔伯特空间</a>
+            <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%B8%8C%E5%B0%94%E4%BC%AF%E7%89%B9%E7%A9%BA%E9%97%B4/">希尔伯特空间</a>
           </li>
         
           <li>
-            <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E6%B5%81%E5%BD%A2%E5%AD%A6%E4%B9%A0/">流形学习</a>
+            <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E7%A9%BA%E9%97%B4%E7%AC%94%E8%AE%B0/">科学空间笔记</a>
           </li>
         
           <li>
-            <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E7%A9%BA%E9%97%B4%E7%AC%94%E8%AE%B0/">科学空间笔记</a>
+            <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/">高斯分布</a>
           </li>
         
           <li>
-            <a href="/2022/04/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/">高斯分布</a>
+            <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC5%E7%AB%A0%20%E5%86%B3%E7%AD%96%E6%A0%91/">第5章 决策树</a>
           </li>
         
       </ul>
