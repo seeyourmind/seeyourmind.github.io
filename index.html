@@ -216,6 +216,81 @@
   
     
       <article
+id="post-VScode-Git"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/2022/05/01/VScode-Git/">Git在VScode中的配置</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <blockquote>
+<p>本地安装Git，且已在环境变量中配置<br>Windows系统下的使用教程</p>
+</blockquote>
+<h3 id="在VScode中配置Git路径"><a href="#在VScode中配置Git路径" class="headerlink" title="在VScode中配置Git路径"></a>在VScode中配置Git路径</h3><p>在<code>settings.json</code>中添加配置</p>
+<pre><code class="json">&quot;git.path&quot;: &quot;%Git安装目录%/Git/cmd/git.exe&quot;,
+</code></pre>
+<h3 id="在VScode终端中添加Git-Bash"><a href="#在VScode终端中添加Git-Bash" class="headerlink" title="在VScode终端中添加Git Bash"></a>在VScode终端中添加Git Bash</h3><p>由于原有的Git Bash已经弃用，直接在<code>settings.json</code>中间中添加Git Bash路径是无法正确添加的，将得到如下错误信息：</p>
+<blockquote>
+<p>Value is not accepted. Valid values: “PowerShell”, “Windows PowerShell”, “Command Prompt”, “JavaScript Debug Terminal”.</p>
+</blockquote>
+<p>正确的做法是使用用新的规则配置：</p>
+<pre><code class="json">&quot;terminal.integrated.profiles.windows&quot;: &#123;
+        &quot;Git-Bash&quot;: &#123;
+            // &quot;source&quot;: &quot;Git Bash&quot;, // 不可使用Git Bash
+            &quot;icon&quot;: &quot;logo-github&quot;,   // 设置图标，可选
+            &quot;path&quot;: [
+                &quot;%Git安装目录%/Git/bin/bash.exe&quot;
+            ],
+            &quot;args&quot;: []
+        &#125;,
+    &#125;,
+    &quot;terminal.integrated.defaultProfile.windows&quot;: &quot;Git-Bash&quot;, // 设置为默认，可选
+</code></pre>
+<h3 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h3><p><code>GitLens</code>: 强大的历史查看功能</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-05-01T08:18:47.000Z" itemprop="datePublished">2022-05-01</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/VScode%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">VScode使用教程</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VScode-config/" rel="tag">VScode.config</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-VScode-LaTex-no-bib"
 class="article article-type-post"
 >
@@ -836,172 +911,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-Hexo搭建GitHub个人博客"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-    <div class="article-feature">
-        <a href="/2022/04/10/Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-            <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-                data-src="https://dfzximg01.dftoutiao.com/news/20220411/20220411090406_a121ce0b5d133db4a93473fe586c5c2f_6.jpeg"
-                alt="item.title"
-                class="lazy"
-            />
-        </a>
-    </div>
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/2022/04/10/Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo搭建GitHub个人博客</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre><code>- 安装Node.js
-- 安装Git
-- 远程连接GitHub
-- 安装Hexo
-- Hexo的本地配置
-- 博客相关指令
-</code></pre>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><blockquote>
-<p>Node.js就是一个用于创建服务器端应用程序的运行系统，它可以轻松构建网络或其他事件驱动的应用程序服务器。</p>
-</blockquote>
-<p>进入<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js官网</a>下载对应版本的安装包，默认设置安装。<br>安装完成后进入终端检查是否安装成功，按<code>Win+R</code>进入<code>cmd</code>输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号，则证明安装成功。</p>
-<blockquote>
-<p>npm (Node Package Manager) NodeJS包管理和分发工具<br>(<em>可选</em>) - 添加镜像（进入cmd，以阿里为例）<br>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><blockquote>
-<p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理，帮助我们把本地网页上传到Github。</p>
-</blockquote>
-<p>进入<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">Git官网</a>下载，默认设置安装。<br>安装完成之后在<code>cmd</code>中使用<code>git --version</code>验证是否安装成功。</p>
-<h3 id="远程连接GitHub"><a href="#远程连接GitHub" class="headerlink" title="远程连接GitHub"></a>远程连接GitHub</h3><p><strong>生成密钥</strong></p>
-<pre><code class="bash"># git bash中设置user.name和user.email
-git config --global user.name &quot;GitHub用户名&quot;
-git config --global user.email &quot;GitHub注册邮箱&quot;
-# 生成密钥
-ssh-keygen -t rsa -C &quot;注册邮箱&quot;
-# 将公钥id_rsa.pub添加到GitHub
-github -&gt; settings -&gt; ssh and gpg keys
-# 测试本地连接
-ssh -T git@github.com
-</code></pre>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><blockquote>
-<p>Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Heroku，是搭建博客的首选框架。</p>
-</blockquote>
-<p>进入<code>cmd</code>输入<code>npm</code>安装命令</p>
-<pre><code class="bash"># 安装指令 -g 表示全局安装
-npm install hexo-cli -g
-# 验证指令
-hexo -v
-</code></pre>
-<h3 id="Hexo的本地配置"><a href="#Hexo的本地配置" class="headerlink" title="Hexo的本地配置"></a>Hexo的本地配置</h3><p><strong>初始化</strong><br>在<code>Git Bash</code>中执行</p>
-<pre><code class="bash"># 创建存放博客文件夹
-mkdir myBlog
-# 初始化
-hexo init myBlog
-</code></pre>
-<p>看到<code>Start blogging with Hexo</code>则表示初始化成功。<br><strong>部署到GitHub</strong><br>安装必要插件：</p>
-<pre><code class="bash">npm install hexo-deployer-git --save  #安装自动部署Github插件
-</code></pre>
-<p>修改配置文件<code>_config.yml</code></p>
-<pre><code class="yml"># Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: git@github.com:seeyourmind/seeyourmind.github.io
-  branch: master
-</code></pre>
-<p><strong>更换主题</strong><br>以aomori为例</p>
-<pre><code class="bash">git clone https://github.com/lh1me/hexo-theme-aomori.git themes/aomori
-</code></pre>
-<h3 id="博客相关指令"><a href="#博客相关指令" class="headerlink" title="博客相关指令"></a>博客相关指令</h3><blockquote>
-<p><strong>常用指令</strong><br>hexo new post “article title”<br>hexo s<br>hexo clean &amp;&amp; hexo g -s<br>hexo clean &amp;&amp; hexo g -d</p>
-</blockquote>
-<p><strong>文章书写</strong></p>
-<pre><code class="bash">hexo new [layout] &lt;title&gt; 或 hexo n [layout] &lt;title&gt;
-# layout: 
-#  post(默认，存于source/_posts)
-#  draft(草稿，存于source/_drafts，可以使用publish指令将其推送到_posts)
-#  page(页面)
--p --path 自定义新文章
--r --replece 替换同名文章
--s --slug 文章的slug，作为新文章的文件名和发布后的URL
-# 示例
-hexo new page --path about/me &quot;About me&quot;
-</code></pre>
-<p><strong>生成静态文件</strong></p>
-<pre><code class="bash">hexo generate 或 hexo g
--d --deploy 文件生成后部署网站
--w --watch 监视文件变动
--b --bail 生成过程中出现异常时抛出
--f --force 强制重新生成文件
--c --concurrency 最大同时生成文件数量，默认无限制
-</code></pre>
-<p><strong>发布草稿</strong></p>
-<pre><code class="bash">hexo publish [layout] &lt;filename&gt;
-</code></pre>
-<p><strong>启动服务器</strong><br><code>hexo server 或 hexo s</code> 启动服务器，<code>ctrl+c</code> 结束，默认地址为：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><br><strong>部署网站</strong></p>
-<pre><code class="bash">hexo deploy 或 hexo d
--g 或--generate 部署之前写成静态文件
-</code></pre>
-<p><strong>渲染文件</strong></p>
-<pre><code class="bash">hexo render &lt;file1&gt; [file2]
--o或--output 设置输出路径
-</code></pre>
-<p><strong>清除缓存文件</strong></p>
-<pre><code class="bash">hexo clean
-</code></pre>
-<p><strong>列出网站资料</strong></p>
-<pre><code class="bash">hexo list &lt;type&gt;
-</code></pre>
-<p><strong>显示草稿</strong></p>
-<pre><code class="bash">hexo --deaft
-</code></pre>
-<p><strong>自定义当前工作目录</strong></p>
-<pre><code class="bash">hexo --cwd /path/to/cwd
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-            <div class="article-repost">
-                <box-icon name='repost' color='#ffffff' size='xs'></box-icon>
-            </div>
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-04-10T13:15:27.000Z" itemprop="datePublished">2022-04-10</time>
-</div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -1036,7 +945,7 @@ hexo new page --path about/me &quot;About me&quot;
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-issue/" rel="tag">VScode.issue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-config/" rel="tag">VScode.config</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-issue/" rel="tag">VScode.issue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
     </div>
   </div>
 
@@ -1047,6 +956,10 @@ hexo new page --path about/me &quot;About me&quot;
     <div class="widget-title"><span>Recent Posts</span></div>
     <div class="widget-inner">
       <ul>
+        
+          <li>
+            <a href="/2022/05/01/VScode-Git/">Git在VScode中的配置</a>
+          </li>
         
           <li>
             <a href="/2022/04/30/VScode-LaTex-no-bib/">解决LaTeX不显示参考文献问题</a>
@@ -1062,10 +975,6 @@ hexo new page --path about/me &quot;About me&quot;
         
           <li>
             <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/">高斯分布</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC5%E7%AB%A0%20%E5%86%B3%E7%AD%96%E6%A0%91/">第5章 决策树</a>
           </li>
         
       </ul>

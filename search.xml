@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Git在VScode中的配置</title>
+      <link href="/2022/05/01/VScode-Git/"/>
+      <url>/2022/05/01/VScode-Git/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本地安装Git，且已在环境变量中配置<br>Windows系统下的使用教程</p></blockquote><h3 id="在VScode中配置Git路径"><a href="#在VScode中配置Git路径" class="headerlink" title="在VScode中配置Git路径"></a>在VScode中配置Git路径</h3><p>在<code>settings.json</code>中添加配置</p><pre><code class="json">&quot;git.path&quot;: &quot;%Git安装目录%/Git/cmd/git.exe&quot;,</code></pre><h3 id="在VScode终端中添加Git-Bash"><a href="#在VScode终端中添加Git-Bash" class="headerlink" title="在VScode终端中添加Git Bash"></a>在VScode终端中添加Git Bash</h3><p>由于原有的Git Bash已经弃用，直接在<code>settings.json</code>中间中添加Git Bash路径是无法正确添加的，将得到如下错误信息：</p><blockquote><p>Value is not accepted. Valid values: “PowerShell”, “Windows PowerShell”, “Command Prompt”, “JavaScript Debug Terminal”.</p></blockquote><p>正确的做法是使用用新的规则配置：</p><pre><code class="json">&quot;terminal.integrated.profiles.windows&quot;: &#123;        &quot;Git-Bash&quot;: &#123;            // &quot;source&quot;: &quot;Git Bash&quot;, // 不可使用Git Bash            &quot;icon&quot;: &quot;logo-github&quot;,   // 设置图标，可选            &quot;path&quot;: [                &quot;%Git安装目录%/Git/bin/bash.exe&quot;            ],            &quot;args&quot;: []        &#125;,    &#125;,    &quot;terminal.integrated.defaultProfile.windows&quot;: &quot;Git-Bash&quot;, // 设置为默认，可选</code></pre><h3 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h3><p><code>GitLens</code>: 强大的历史查看功能</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> VScode使用教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VScode.config </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决LaTeX不显示参考文献问题</title>
       <link href="/2022/04/30/VScode-LaTex-no-bib/"/>
       <url>/2022/04/30/VScode-LaTex-no-bib/</url>
