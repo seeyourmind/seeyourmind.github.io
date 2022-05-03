@@ -216,6 +216,118 @@
   
     
       <article
+id="post-VScode-Python-Remote"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/2022/05/03/VScode-Python-Remote/">VScode配置Python远程调试</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h1 id="必要插件安装"><a href="#必要插件安装" class="headerlink" title="必要插件安装"></a>必要插件安装</h1><blockquote>
+<ol>
+<li>安装Remote-SSH （或者Remote Development这个插件合集，其中包含了SSH）</li>
+<li>安装Python Extensions</li>
+</ol>
+</blockquote>
+<h1 id="远程服务器配置"><a href="#远程服务器配置" class="headerlink" title="远程服务器配置"></a>远程服务器配置</h1><p>点击<code>Remote Explorer</code>，在下拉框中选择<code>SSH Targets</code>，点击⚙️配置<code>C:\Users\Administrator\.ssh\config</code></p>
+<pre><code class="php"># Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+Host Deep-H
+    HostName 192.168.1.XX   # 服务器IP
+    User XXXXX              # 用户名
+</code></pre>
+<p>如果报错，尝试在VScode设置中搜索<code>Show Login Terminal</code>，勾选下方<code>Always reveal the SSH login terminal</code>。<br><img src="/../images/Snipaste_2022-05-03_18-01-50.png" alt="远程服务器配置"><br>配置完成后，在需要连接的条目上右键，选择<code>Connect to Host in New Window</code>或者<code>Connect to Host in Current Window</code></p>
+<h1 id="配置服务器免密登录"><a href="#配置服务器免密登录" class="headerlink" title="配置服务器免密登录"></a>配置服务器免密登录</h1><h2 id="在本地生成公-私钥对"><a href="#在本地生成公-私钥对" class="headerlink" title="在本地生成公-私钥对"></a>在本地生成公-私钥对</h2><pre><code class="bash">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot; -f ~/.ssh/文件名
+# -t type 指定要创建的密钥类型。可以使用：“rsa1”(SSH-1) “rsa”(SSH-2) “dsa”(SSH-2)
+# -b bits 指定密钥长度。对于RSA密钥，最小要求768位，默认是2048位。DSA密钥必须恰好是1024位(FIPS 186-2 标准的要求)。
+# -C comment 提供一个新注释
+# -f ~/.ssh/文件名 公钥和私钥的输出位置和对应的文件名
+# 最简单常用的用法：
+ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+</code></pre>
+<p>命令运行之后，会在<code>.ssh</code>文件夹下生成<code>id_rsa.pub</code>和<code>id_rsa</code></p>
+<h2 id="在远程端添加公钥"><a href="#在远程端添加公钥" class="headerlink" title="在远程端添加公钥"></a>在远程端添加公钥</h2><p>进入<code>~/.ssh</code>将<code>id_rsa.pub</code>的内容追加到<code>authorized_keys</code>中</p>
+<pre><code class="bash"># 如果没有.ssh文件夹则创建
+mkdir ~/.ssh
+# 如果没有authorized_keys文件则创建
+touch ~/.ssh/authorized_keys
+# 确认.ssh和authorized_keys的权限，必要时修改权限
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+# 追加id_rsa.pub内容，此命令需确保.pub文件与authorized_keys在同一目录下
+cat id_rsa.pub &gt;&gt; authorized_keys
+</code></pre>
+<h2 id="修改Remote-SSH配置"><a href="#修改Remote-SSH配置" class="headerlink" title="修改Remote-SSH配置"></a>修改Remote-SSH配置</h2><pre><code class="php"># Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+Host Deep-H
+    HostName 192.168.1.XX   # 服务器IP
+    User XXXXX              # 用户名
+    IdentityFile XXXX\.ssh\id_rsa     # 本地生成的私钥文件
+</code></pre>
+<h1 id="Python代码调试"><a href="#Python代码调试" class="headerlink" title="Python代码调试"></a>Python代码调试</h1><h2 id="配置Python环境"><a href="#配置Python环境" class="headerlink" title="配置Python环境"></a>配置Python环境</h2><p><code>Run</code>-&gt;<code>Add Configuration...</code>-&gt;<code>Python File</code>打开<code>launch.json</code>文件，在该文件中配置：</p>
+<pre><code class="json">&#123;
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        &#123;
+            &quot;name&quot;: &quot;Python: Current File&quot;,
+            &quot;type&quot;: &quot;python&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;$&#123;file&#125;&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;justMyCode&quot;: true,
+            &quot;cwd&quot;: &quot;$&#123;fileDirname&#125;&quot;  // 设置相对路径，在debug时可以切换到当前文件所在目录
+        &#125;,
+    ]
+&#125;
+</code></pre>
+<blockquote>
+<p><code>F1</code>-&gt;<code>Python: Select Interpreter</code>选择Python解释器</p>
+</blockquote>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-05-03T12:08:40.000Z" itemprop="datePublished">2022-05-03</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/VScode%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">VScode使用教程</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VScode-config/" rel="tag">VScode.config</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-PostReading-KK-lifestream"
 class="article article-type-post"
 >
@@ -893,74 +1005,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-《统计学习方法》（第二版）/第3章 K近邻法"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/">第3章 K近邻法</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h3 id="3-1-k-近邻算法-（-k-nearest-neighbor-KNN）"><a href="#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）" class="headerlink" title="3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）"></a>3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）</h3><blockquote>
-<p><strong>输入：</strong>训练集$T&#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$<br><strong>输出：</strong>实例$x$所属类别$y$<br>1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;<br>2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&#x3D;c_j)}$，$I$为指示函数。</p>
-</blockquote>
-<p>是一种基本分类与回归方法，没有显式的学习过程</p>
-<h3 id="3-2-k-近邻模型"><a href="#3-2-k-近邻模型" class="headerlink" title="3.2 $k$近邻模型"></a>3.2 $k$近邻模型</h3><p>$k$近邻算法使用的模型实际上对应于对特征空间的划分，模型有三个基本要素：距离度量、$k$值得选择和分类决策规则。</p>
-<p><strong>距离度量</strong></p>
-<blockquote>
-<p>欧式距离、$L_p$距离（Minkowski距离）</p>
-<p>$L_p(x_i,y_i)&#x3D;(\sum_{l&#x3D;1}^n|x_i^{(l)}-x_j^{(l)}|^p)^\frac{1}{p},p\ge1$<br>$p&#x3D;2$，欧式距离；$p&#x3D;1$，Manhattan距离；$p&#x3D;\infty$，各个坐标距离的最大值</p>
-</blockquote>
-<p><strong>$k$值的选择</strong></p>
-<blockquote>
-<p><strong>较小值：</strong>相当于在较小邻域中训练实例进行预测，近似误差会减小，估计误差会增大，对近邻点非常敏感。<em>k值减小意味着整体模型变得复杂，容易过拟合。</em></p>
-<p><strong>较大值：</strong>相当于在较大邻域中训练实例进行预测，估计误差会减小，近似误差会增大，对远邻点依然有效，容易误检。<em>k值增大意味着整体模型变得简单，容易欠拟合。</em></p>
-<p>$\mathbf{k&#x3D;N}$：无论什么输入实例是什么，都将简单地预测它属于在训练实例中最多的类。这时，模型过于简单，完全忽略了实例中大量有用信息。</p>
-</blockquote>
-<h3 id="3-3-k-近邻法的实现：-kd-树"><a href="#3-3-k-近邻法的实现：-kd-树" class="headerlink" title="3.3 $k$近邻法的实现：$kd$树"></a>3.3 $k$近邻法的实现：$kd$树</h3><p>以特征$x$的第一维为坐标轴，以中位数为切分点，然后是第二维，第三维，划分得到最后的二叉树。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-04-10T13:17:27.000Z" itemprop="datePublished">2022-04-10</time>
-</div>
-    
-        <div class="article-category">
-        <a class="article-category-link" href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">《统计学习方法》（第二版）</a>
-        </div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -1008,6 +1052,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/2022/05/03/VScode-Python-Remote/">VScode配置Python远程调试</a>
+          </li>
+        
+          <li>
             <a href="/2022/05/01/PostReading-KK-lifestream/">凯文·凯利的103条人生建议</a>
           </li>
         
@@ -1021,10 +1069,6 @@ class="article article-type-post"
         
           <li>
             <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E5%B8%8C%E5%B0%94%E4%BC%AF%E7%89%B9%E7%A9%BA%E9%97%B4/">希尔伯特空间</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/11/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E7%A9%BA%E9%97%B4%E7%AC%94%E8%AE%B0/">科学空间笔记</a>
           </li>
         
       </ul>
