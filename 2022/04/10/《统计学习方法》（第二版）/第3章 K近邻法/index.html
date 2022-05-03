@@ -8,7 +8,10 @@
     
     <title>第3章 K近邻法 | Seeyourmind</title>
 
-    <meta name="description" content="Seeyourmind">
+    <meta name="description" content="&lt;h3 id=&#34;3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34;&gt;&lt;a href=&#34;#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34; class=&#34;headerlink&#34; title=&#34;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&#34;&gt;&lt;/a&gt;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;训练集$T&amp;#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$&lt;br&gt;&lt;strong&gt;输出：&lt;/strong&gt;实例$x$所属类别$y$&lt;br&gt;1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;&lt;br&gt;2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&amp;#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&amp;#x3D;c_j)}$，$I$为指示函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;是一种基本分类与回归方法，没有显式的学习过程&lt;/p&gt;">
     <meta name="keywords" content="">
 
     
@@ -16,17 +19,29 @@
     <meta property="og:locale" content="cn,en,ja,default" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content= "第3章 K近邻法 | Seeyourmind"  />
-    <meta property="og:description" content= "Seeyourmind" />
+    <meta property="og:description" content= "&lt;h3 id=&#34;3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34;&gt;&lt;a href=&#34;#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34; class=&#34;headerlink&#34; title=&#34;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&#34;&gt;&lt;/a&gt;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;训练集$T&amp;#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$&lt;br&gt;&lt;strong&gt;输出：&lt;/strong&gt;实例$x$所属类别$y$&lt;br&gt;1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;&lt;br&gt;2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&amp;#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&amp;#x3D;c_j)}$，$I$为指示函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;是一种基本分类与回归方法，没有显式的学习过程&lt;/p&gt;" />
     <meta property="og:url" content="http://example.com/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="FZY" />
     <meta property="article:publisher" content="" />
-    <meta property="og:description" content="Seeyourmind" />
+    <meta property="og:description" content="&lt;h3 id=&#34;3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34;&gt;&lt;a href=&#34;#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34; class=&#34;headerlink&#34; title=&#34;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&#34;&gt;&lt;/a&gt;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;训练集$T&amp;#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$&lt;br&gt;&lt;strong&gt;输出：&lt;/strong&gt;实例$x$所属类别$y$&lt;br&gt;1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;&lt;br&gt;2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&amp;#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&amp;#x3D;c_j)}$，$I$为指示函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;是一种基本分类与回归方法，没有显式的学习过程&lt;/p&gt;" />
     <meta name="twitter:title" content="第3章 K近邻法 | Seeyourmind"/>
-    <meta name="twitter:description" content="Seeyourmind"/>
+    <meta name="twitter:description" content="&lt;h3 id=&#34;3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34;&gt;&lt;a href=&#34;#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34; class=&#34;headerlink&#34; title=&#34;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&#34;&gt;&lt;/a&gt;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;训练集$T&amp;#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$&lt;br&gt;&lt;strong&gt;输出：&lt;/strong&gt;实例$x$所属类别$y$&lt;br&gt;1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;&lt;br&gt;2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&amp;#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&amp;#x3D;c_j)}$，$I$为指示函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;是一种基本分类与回归方法，没有显式的学习过程&lt;/p&gt;"/>
     <script type="application/ld+json">
         {
-            "description": "Seeyourmind",
+            "description": "&lt;h3 id=&#34;3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34;&gt;&lt;a href=&#34;#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）&#34; class=&#34;headerlink&#34; title=&#34;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&#34;&gt;&lt;/a&gt;3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;训练集$T&amp;#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$&lt;br&gt;&lt;strong&gt;输出：&lt;/strong&gt;实例$x$所属类别$y$&lt;br&gt;1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;&lt;br&gt;2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&amp;#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&amp;#x3D;c_j)}$，$I$为指示函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;是一种基本分类与回归方法，没有显式的学习过程&lt;/p&gt;",
             "author": { "@type": "Person", "name": "FZY" },
             "@type": "BlogPosting",
             "url": "http://example.com/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/index.html",
@@ -183,7 +198,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl2n1unde000mvwtxa6lc8jr8" class="article article-type-post" itemscope
+    <article id="post-cl2q6aw72000tiwtx39gpeq6p" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -237,6 +252,7 @@
 <p><strong>输入：</strong>训练集$T&#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$<br><strong>输出：</strong>实例$x$所属类别$y$<br>1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;<br>2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&#x3D;c_j)}$，$I$为指示函数。</p>
 </blockquote>
 <p>是一种基本分类与回归方法，没有显式的学习过程</p>
+<span id="more"></span>
 <h3 id="3-2-k-近邻模型"><a href="#3-2-k-近邻模型" class="headerlink" title="3.2 $k$近邻模型"></a>3.2 $k$近邻模型</h3><p>$k$近邻算法使用的模型实际上对应于对特征空间的划分，模型有三个基本要素：距离度量、$k$值得选择和分类决策规则。</p>
 <p><strong>距离度量</strong></p>
 <blockquote>
@@ -274,19 +290,19 @@
     
 <nav class="article-nav">
   
-    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC5%E7%AB%A0%20%E5%86%B3%E7%AD%96%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          第4章 朴素贝叶斯法
+          第5章 决策树
         
       </div>
     </a>
   
   
-    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC2%E7%AB%A0%20%E6%84%9F%E7%9F%A5%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">第2章 感知机</div>
+      <div class="article-nav-title">第4章 朴素贝叶斯法</div>
     </a>
   
 </nav>

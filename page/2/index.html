@@ -172,7 +172,7 @@
   
     
       <article
-id="post-《统计学习方法》（第二版）/第3章 K近邻法"
+id="post-《统计学习方法》（第二版）/第4章 朴素贝叶斯法"
 class="article article-type-post"
 >
 
@@ -183,28 +183,11 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/">第3章 K近邻法</a>
+        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/">第4章 朴素贝叶斯法</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h3 id="3-1-k-近邻算法-（-k-nearest-neighbor-KNN）"><a href="#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）" class="headerlink" title="3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）"></a>3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）</h3><blockquote>
-<p><strong>输入：</strong>训练集$T&#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$<br><strong>输出：</strong>实例$x$所属类别$y$<br>1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;<br>2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&#x3D;c_j)}$，$I$为指示函数。</p>
-</blockquote>
-<p>是一种基本分类与回归方法，没有显式的学习过程</p>
-<h3 id="3-2-k-近邻模型"><a href="#3-2-k-近邻模型" class="headerlink" title="3.2 $k$近邻模型"></a>3.2 $k$近邻模型</h3><p>$k$近邻算法使用的模型实际上对应于对特征空间的划分，模型有三个基本要素：距离度量、$k$值得选择和分类决策规则。</p>
-<p><strong>距离度量</strong></p>
-<blockquote>
-<p>欧式距离、$L_p$距离（Minkowski距离）</p>
-<p>$L_p(x_i,y_i)&#x3D;(\sum_{l&#x3D;1}^n|x_i^{(l)}-x_j^{(l)}|^p)^\frac{1}{p},p\ge1$<br>$p&#x3D;2$，欧式距离；$p&#x3D;1$，Manhattan距离；$p&#x3D;\infty$，各个坐标距离的最大值</p>
-</blockquote>
-<p><strong>$k$值的选择</strong></p>
-<blockquote>
-<p><strong>较小值：</strong>相当于在较小邻域中训练实例进行预测，近似误差会减小，估计误差会增大，对近邻点非常敏感。<em>k值减小意味着整体模型变得复杂，容易过拟合。</em></p>
-<p><strong>较大值：</strong>相当于在较大邻域中训练实例进行预测，估计误差会减小，近似误差会增大，对远邻点依然有效，容易误检。<em>k值增大意味着整体模型变得简单，容易欠拟合。</em></p>
-<p>$\mathbf{k&#x3D;N}$：无论什么输入实例是什么，都将简单地预测它属于在训练实例中最多的类。这时，模型过于简单，完全忽略了实例中大量有用信息。</p>
-</blockquote>
-<h3 id="3-3-k-近邻法的实现：-kd-树"><a href="#3-3-k-近邻法的实现：-kd-树" class="headerlink" title="3.3 $k$近邻法的实现：$kd$树"></a>3.3 $k$近邻法的实现：$kd$树</h3><p>以特征$x$的第一维为坐标轴，以中位数为切分点，然后是第二维，第三维，划分得到最后的二叉树。</p>
-
+        <h3 id="1-基本方法"><a href="#1-基本方法" class="headerlink" title="1.基本方法"></a>1.基本方法</h3><p>朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.</p>
         
     </div>
     </div>
@@ -257,57 +240,6 @@ class="article article-type-post"
         
         <h3 id="2-1-感知机模型"><a href="#2-1-感知机模型" class="headerlink" title="2.1 感知机模型"></a>2.1 感知机模型</h3><p>$$<br>f(x)&#x3D;sign(w\cdot x+b),\ sign(x)&#x3D;\begin{cases}+1,x\ge0\-1,x\lt0\end{cases}<br>$$</p>
 <p>对于特征空间$\mathbf{R}^n$中的一个超平面$S$，其中$w$是超平面的法向量，$b$是超平面的截距。</p>
-<h3 id="2-2-感知机学习策略"><a href="#2-2-感知机学习策略" class="headerlink" title="2.2 感知机学习策略"></a>2.2 感知机学习策略</h3><ul>
-<li>数据集的线性可分性</li>
-<li>损失函数是参数$w$和$b$连续可导函数：点到超平面的距离 $\frac{1}{|w|}|w\cdot x_i+b|$</li>
-<li>误分类数据满足：$-y_i(w\cdot x_i+b)\gt0$，$y(w\cdot x+b)$称为样本点的函数间隔</li>
-</ul>
-<h3 id="2-3-感知机学习算法"><a href="#2-3-感知机学习算法" class="headerlink" title="2.3 感知机学习算法"></a>2.3 感知机学习算法</h3><p><strong>原始形式</strong></p>
-<blockquote>
-<p><strong>输入：</strong>数据集、学习率$\eta\ (0\lt\eta\le1)$<br><strong>输出：</strong>$w,b,f(x)&#x3D;sign(w\cdot x+b)$</p>
-<ol>
-<li><p>选取初始值$w_0,b_0$</p>
-</li>
-<li><p>在训练集中选取数据$(x_i,y_i)$</p>
-</li>
-<li><p>如果$y_i(w\cdot x_i+b)\le0$</p>
-<p>$$w\leftarrow w+\eta y_i x_i\<br>b\leftarrow b+\eta y_i$$</p>
-</li>
-<li><p>转至2，直到无误分类点</p>
-</li>
-</ol>
-</blockquote>
-<p>首先任意选取一个超平面，然后用梯度下降法不断极小化目标函数，在一个过程中一次随机选取一个误分类点使其梯度下降。</p>
-<p><strong>Novikoff定理</strong></p>
-<ol>
-<li><p>$\exists:y_i(\hat{W}<em>{opt}\cdot\hat{x}<em>i)&#x3D;y_i(W</em>{opt}\cdot x_i+b</em>{opt})\ge\gamma,|\hat{W}_{opt}|&#x3D;1$</p>
-</li>
-<li><p>在训练集上的误分类次数$k$满足不等式：$k\le(\frac{R}{\gamma})^2,R&#x3D;\max_{1\le i\le N}|\hat{x}_i|^2$</p>
-</li>
-</ol>
-<p>说明误分类有上界；训练集可分时，原始形式收敛，不可分时，不收敛；2可以近似看成线段划分，即特征空间最多可以划分成K个。</p>
-<p><code>当训练集可分时，感知机学习算法存在无穷多解，由于不同的初始值或不同的迭代顺序而有所不同。</code></p>
-<p><strong>对偶形式</strong></p>
-<blockquote>
-<p><strong>输入：</strong>数据集、学习率$\eta\ (0\lt\eta\le1)$<br><strong>输出：</strong>$\alpha,b,f(x)&#x3D;sign(\sum_{j&#x3D;1}^N\alpha_j y_j x_j\cdot x+b)$</p>
-<ol>
-<li><p>选取初始值$a\leftarrow0,b\leftarrow0$</p>
-</li>
-<li><p>在训练集中选取数据$(x_i,y_i)$</p>
-</li>
-<li><p>如果$y_i(\sum_{j&#x3D;1}^N\alpha_j y_j x_j\cdot x_i+b)\le0$</p>
-</li>
-</ol>
-<p>  $$\alpha_i\leftarrow\alpha_i+\eta\<br>  b\leftarrow b+\eta y_i$$</p>
-<ol start="4">
-<li>转至2，直到无误分类点</li>
-</ol>
-</blockquote>
-<p><strong>基本思想：</strong>将$w$和$b$表示为实例$x_i$和标记$y_i$的线性组合，通过求解其系数而得到$w$和$b$。实例点更新次数越多，意味着它距离分类超平面越近，也就越难正确分类。对偶形式中训练实例仅以內积$x_j\cdot x_i$的形式出现（Gram矩阵）。</p>
-<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><p><strong>1. 为什么感知机不能表示异或</strong></p>
-<p><strong>2. 样本集线性可分的充要条件是正实例点击所构成的凸壳$^1$与负实例所构成的凸壳互不相交</strong></p>
-<p>$^1$设集合$S\subset\mathbf{R}^n$是由$\mathbf{R}^n$中的$k$个点组成的集合，即$S&#x3D;{x_1,x_2,\cdots,x_k}$ 定义$S$的凸壳$conv(S)$为：<br>$$<br>conv(S)&#x3D;\left{x&#x3D;\sum_{i&#x3D;1}^k{\lambda_i x_i}\mid\sum_{i&#x3D;1}^k{\lambda_i&#x3D;1},\lambda_i\ge0,i&#x3D;1,2,\cdots,k\right}<br>$$<br><code>最小凸多边形、点集合的边界所围成的区域、点集的线性组合</code></p>
-
         
     </div>
     </div>
@@ -376,104 +308,6 @@ class="article article-type-post"
 - Hexo的本地配置
 - 博客相关指令
 </code></pre>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><blockquote>
-<p>Node.js就是一个用于创建服务器端应用程序的运行系统，它可以轻松构建网络或其他事件驱动的应用程序服务器。</p>
-</blockquote>
-<p>进入<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js官网</a>下载对应版本的安装包，默认设置安装。<br>安装完成后进入终端检查是否安装成功，按<code>Win+R</code>进入<code>cmd</code>输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号，则证明安装成功。</p>
-<blockquote>
-<p>npm (Node Package Manager) NodeJS包管理和分发工具<br>(<em>可选</em>) - 添加镜像（进入cmd，以阿里为例）<br>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><blockquote>
-<p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理，帮助我们把本地网页上传到Github。</p>
-</blockquote>
-<p>进入<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">Git官网</a>下载，默认设置安装。<br>安装完成之后在<code>cmd</code>中使用<code>git --version</code>验证是否安装成功。</p>
-<h3 id="远程连接GitHub"><a href="#远程连接GitHub" class="headerlink" title="远程连接GitHub"></a>远程连接GitHub</h3><p><strong>生成密钥</strong></p>
-<pre><code class="bash"># git bash中设置user.name和user.email
-git config --global user.name &quot;GitHub用户名&quot;
-git config --global user.email &quot;GitHub注册邮箱&quot;
-# 生成密钥
-ssh-keygen -t rsa -C &quot;注册邮箱&quot;
-# 将公钥id_rsa.pub添加到GitHub
-github -&gt; settings -&gt; ssh and gpg keys
-# 测试本地连接
-ssh -T git@github.com
-</code></pre>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><blockquote>
-<p>Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Heroku，是搭建博客的首选框架。</p>
-</blockquote>
-<p>进入<code>cmd</code>输入<code>npm</code>安装命令</p>
-<pre><code class="bash"># 安装指令 -g 表示全局安装
-npm install hexo-cli -g
-# 验证指令
-hexo -v
-</code></pre>
-<h3 id="Hexo的本地配置"><a href="#Hexo的本地配置" class="headerlink" title="Hexo的本地配置"></a>Hexo的本地配置</h3><p><strong>初始化</strong><br>在<code>Git Bash</code>中执行</p>
-<pre><code class="bash"># 创建存放博客文件夹
-mkdir myBlog
-# 初始化
-hexo init myBlog
-</code></pre>
-<p>看到<code>Start blogging with Hexo</code>则表示初始化成功。<br><strong>部署到GitHub</strong><br>安装必要插件：</p>
-<pre><code class="bash">npm install hexo-deployer-git --save  #安装自动部署Github插件
-</code></pre>
-<p>修改配置文件<code>_config.yml</code></p>
-<pre><code class="yml"># Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: git@github.com:seeyourmind/seeyourmind.github.io
-  branch: master
-</code></pre>
-<p><strong>更换主题</strong><br>以aomori为例</p>
-<pre><code class="bash">git clone https://github.com/lh1me/hexo-theme-aomori.git themes/aomori
-</code></pre>
-<h3 id="博客相关指令"><a href="#博客相关指令" class="headerlink" title="博客相关指令"></a>博客相关指令</h3><blockquote>
-<p><strong>常用指令</strong><br>hexo new post “article title”<br>hexo s<br>hexo clean &amp;&amp; hexo g -s<br>hexo clean &amp;&amp; hexo g -d</p>
-</blockquote>
-<p><strong>文章书写</strong></p>
-<pre><code class="bash">hexo new [layout] &lt;title&gt; 或 hexo n [layout] &lt;title&gt;
-# layout: 
-#  post(默认，存于source/_posts)
-#  draft(草稿，存于source/_drafts，可以使用publish指令将其推送到_posts)
-#  page(页面)
--p --path 自定义新文章
--r --replece 替换同名文章
--s --slug 文章的slug，作为新文章的文件名和发布后的URL
-# 示例
-hexo new page --path about/me &quot;About me&quot;
-</code></pre>
-<p><strong>生成静态文件</strong></p>
-<pre><code class="bash">hexo generate 或 hexo g
--d --deploy 文件生成后部署网站
--w --watch 监视文件变动
--b --bail 生成过程中出现异常时抛出
--f --force 强制重新生成文件
--c --concurrency 最大同时生成文件数量，默认无限制
-</code></pre>
-<p><strong>发布草稿</strong></p>
-<pre><code class="bash">hexo publish [layout] &lt;filename&gt;
-</code></pre>
-<p><strong>启动服务器</strong><br><code>hexo server 或 hexo s</code> 启动服务器，<code>ctrl+c</code> 结束，默认地址为：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><br><strong>部署网站</strong></p>
-<pre><code class="bash">hexo deploy 或 hexo d
--g 或--generate 部署之前写成静态文件
-</code></pre>
-<p><strong>渲染文件</strong></p>
-<pre><code class="bash">hexo render &lt;file1&gt; [file2]
--o或--output 设置输出路径
-</code></pre>
-<p><strong>清除缓存文件</strong></p>
-<pre><code class="bash">hexo clean
-</code></pre>
-<p><strong>列出网站资料</strong></p>
-<pre><code class="bash">hexo list &lt;type&gt;
-</code></pre>
-<p><strong>显示草稿</strong></p>
-<pre><code class="bash">hexo --deaft
-</code></pre>
-<p><strong>自定义当前工作目录</strong></p>
-<pre><code class="bash">hexo --cwd /path/to/cwd
-</code></pre>
-
         
     </div>
     </div>
@@ -528,46 +362,6 @@ class="article article-type-post"
 <blockquote>
 <p>1-输入空间、特征空间和输出空间：特征连续预测是回归，离散预测是分类<br>2-联合概率分布：假设输入与输出服从联合分布（关于数据的基本假设）<br>3-假设空间：模型属于由输入空间到输出空间的映射的集合，意味着学习范围的确定。模型可以是概率模型（$P(Y|X)$）或非概率模型$Y&#x3D;f(X)$</p>
 </blockquote>
-<p><strong>无监督学习</strong>    <code>学习数据中的统计规律或潜在结构</code></p>
-<blockquote>
-<p>旨在从假设空间中选出在给定评价标准下的最优模型<br>模型可以实现对数据的聚类、降维或概率估计</p>
-</blockquote>
-<p><strong>强化学习</strong>    <code>学习最优的序贯决策</code></p>
-<blockquote>
-<p>强化学习的马尔可夫决策过程是状态、奖励、动作序列上的随机过程，$&lt;S,A,P,r,\gamma&gt;$<br><strong>S</strong>tate、<strong>A</strong>ction、transition <strong>P</strong>robability ($P(s^\prime|s,a)&#x3D;P(s_{t+1}&#x3D;s^\prime|s_t&#x3D;s,a_t&#x3D;a)$)、<strong>r</strong>eward function ($r(s,a)&#x3D;E(r_{t+1}|s_t&#x3D;s,a_t&#x3D;a)$)、discount factor ($\gamma\in[0,1]$)<br>策略$\pi$定义为给定状态下动作的函数$a&#x3D;f(s)$或$P(a|s)$<br>状态价值函数定义为策略$\pi$从某一个状态$s$开始的长期累积奖励的数学期望<br>动作价值函数定义为策略$\pi$从某一个状态$s$和动作$a$开始的长期累积奖励的数学期望</p>
-<p>强化学习方法有基于策略的(policy-based)、基于价值的(value-based)无模型(model-free)方法和有模型(model-based)方法。<br>model-based直接学习马尔科夫决策过程<br>policy-based model-free求解最优策略$\pi^*$<br>value-based model-free求解最优价值函数$q^*(s,a)$</p>
-</blockquote>
-<p><strong>半监督学习</strong>    <code>利用未标注数据中的信息辅助标注数据进行监督学习</code></p>
-<p><strong>主动学习</strong>     <code>找出对学习最有帮助的实例让teacher标注</code></p>
-<h3 id="2-按模型分类"><a href="#2-按模型分类" class="headerlink" title="2. 按模型分类"></a>2. 按模型分类</h3><p><strong>概率模型与非概率模型</strong></p>
-<blockquote>
-<p><strong>基本概率公式</strong><br>加法规则：$P(x)&#x3D;\sum_yP(x,y)$<br>乘法规则：$P(x,y)&#x3D;P(x)P(y|x)$</p>
-</blockquote>
-<p><strong>线性模型与非线性模型</strong></p>
-<p><strong>参数化模型与非参数化模型</strong></p>
-<p>参数化模型假设模型参数的维度固定，模型可以由有限维参数完全刻画；非参数化模型假设模型参数的维度不固定或者说无穷大，随着训练数据量的增加而不断增大。</p>
-<h3 id="3-按算法分类"><a href="#3-按算法分类" class="headerlink" title="3. 按算法分类"></a>3. 按算法分类</h3><p><strong>在线学习与批量学习</strong></p>
-<p>在线学习每次接受一个样本，进行预测，之后学习模型，不断重复；批量学习一次接受所有数据，学习模型，之后进行预测。<br>在线学习可以是监督学习，也可以是无监督学习，强化学习本身就拥有在线学习的特点。</p>
-<h3 id="4-按技巧分类"><a href="#4-按技巧分类" class="headerlink" title="4. 按技巧分类"></a>4. 按技巧分类</h3><p><strong>贝叶斯学习</strong></p>
-<p>在概率模型学习和推理中，利用贝叶斯定理计算在给定数据条件下模型的条件概率，即后验概率，并应用这个原理进行模型的估计，以及对数据的预测。</p>
-<p>贝叶斯估计和极大似然估计代表着统计学中贝叶斯学派和频率学派对统计的不同认识。<br>假设先验分布是均匀分布，取后验概率最大，就能从<code>贝叶斯估计</code>得到<code>极大似然估计</code>。<br>$$<br>D\rightarrow{极大似然估计}\rightarrow\hat{\theta&#x3D;\arg\max_{\theta}P(D|\theta)}\ [图像是只在\hat{\theta}有值]\<br>D\rightarrow{贝叶斯估计}\rightarrow\hat{P}(\theta|D)&#x3D;\frac{P(\theta)P(D|\theta)}{P(D)}\ [图像是正态分布曲线]<br>$$<br><strong>核方法</strong></p>
-<p>核方法是使用核函数表示和学习费线性模型的一种机器学习方法。有一些线性模型的学习方法基于相似度计算&lt;向量內积&gt;，核方法可以把他们扩展到非线性模型的学习中，使其应用更广泛。<br>线性转非线性直接做是显式的定义输入空间到特征空间的映射，在特征空间做內积；核方法不显式的定义这个映射，而是定义核函数&lt;映射之后在特征空间的內积&gt;。<br>$$<br>\frac{输入空间}{x_1,x_2}\stackrel{映射函数\psi}{\longrightarrow}\frac{特征空间}{\psi(x_1),\psi(x_2)}\<br>核函数定义在输入空间\frac{输入空间}{K(x_1,x_2)} \ K(x_1,x_2)&#x3D;&lt;\psi(x_1),\psi(x_2)&gt;<br>$$</p>
-<h3 id="5-统计学习方法三要素"><a href="#5-统计学习方法三要素" class="headerlink" title="5. 统计学习方法三要素"></a>5. 统计学习方法三要素</h3><p><strong>模型</strong></p>
-<p>在监督学习过程中，模型就是所要学习的条件概率分布或决策函数，模型的假设空间（hypothesis space）包含所有可能的条件概率分布或决策函数。</p>
-<p><strong>策略</strong></p>
-<p>损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。<br>损失函数是$f(X)$和$Y$的<strong>非负</strong>实值函数，记作$L(Y,f(X))$；损失函数的期望是模型$f(X)$关于联合分布$P(x,Y)$的平均意义下的损失，称为风险函数或期望损失$R_{exp}(f)$。<br>$$<br>R_{exp}(f)&#x3D;E_P[L(Y,f(X))]&#x3D;\int_{\mathcal{X}\times\mathcal{Y}}{L(y,f(x))P(x,y)dxdy}<br>$$<br>由于联合分布未知，监督学习就是为了学习联合分布，所以监督学习是一个ill-formed problem。根据大数定律，当样本容量$N$趋于无穷时，经验风险$R_{emp}$趋近于期望风险$R_{exp}$<br>$$<br>R_{emp}(f)&#x3D;\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(x_i))}<br>$$<br><code>大数定律：说如果统计数据足够大,那么事物出现的频率就能无限接近它的期望值。</code></p>
-<p>由于现实中训练样本数目有限，甚至很小，所以需要矫正。</p>
-<blockquote>
-<p><strong>经验风险最小化</strong><br>$\min_{f\in{F}}\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(x_i))}$<br>当模型是条件概率分布、损失函数是对数损失函数时，经验风险最小化等价于<code>极大似然估计</code><br><strong>结构风险最小化</strong><br>$R_{srm}(f)&#x3D;\frac{1}{N}\sum_{i&#x3D;1}^N{L(y_i,f(xi))+\lambda J(f)},\ \lambda\ge0$<br>$J(f)$为模型的复杂度，是定义在假设空间的泛函；$\lambda$用以权衡经验风险和模型复杂度<br>当模型是条件概率分布、损失函数是对数损失函数时，模型复杂度由模型的先验概率表示时，结构风险最小化等价于<code>最大后验概率估计</code></p>
-</blockquote>
-<p><strong>算法</strong></p>
-<h3 id="6-模型评估与模型选择"><a href="#6-模型评估与模型选择" class="headerlink" title="6.模型评估与模型选择"></a>6.模型评估与模型选择</h3><p>通常将学习方法对未知数据的预测能力称为泛化能力</p>
-<p><strong>模型选择方法：</strong>正则化和交叉验证</p>
-<p>正则化符合奥卡姆剃刀（Occam’s razor）原理<br><code>如无必要，勿增实体，即简单有效原理</code></p>
-<p>交叉验证：简单交叉（分成两部分）、S折交叉（分成S分）、留一交叉（S&#x3D;N）</p>
-<h3 id="7-泛化误差上界"><a href="#7-泛化误差上界" class="headerlink" title="7.泛化误差上界"></a>7.泛化误差上界</h3><p>$$<br>对二分类问题，泛化误差R(f)：R(f)\le\hat{R}(f)+\epsilon(d,N,\delta),\ \epsilon(d,N,\delta)&#x3D;\sqrt{\frac{1}{2N}(\log{d}+\log\frac{1}{\delta})}\<br>Hoeffding不等式：\forall{t\gt0},P(|\overline{X}-E[\overline{X}]|\ge t)\le2exp(-\frac{2n^2t^2}{\sum_{i&#x3D;1}^{n}(b_i-a_i)^2})<br>$$</p>
-<h3 id="8-监督学习应用"><a href="#8-监督学习应用" class="headerlink" title="8.监督学习应用"></a>8.监督学习应用</h3><p>TP（正确（T）预测为正样例（P））——正预测为正<br>FN（错误（F）预测为负样本（N））——正预测为负<br>FP（错误（F）预测为正样例（P））——负预测为正<br>TN（正确（T）预测为负样本（N））——负预测为负<br>准确率：预测为正的里面真实为正的<br>召回率：真实为正的里面预测为正的</p>
-
         
     </div>
     </div>

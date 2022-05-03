@@ -8,7 +8,7 @@
     
     <title>第4章 朴素贝叶斯法 | Seeyourmind</title>
 
-    <meta name="description" content="Seeyourmind">
+    <meta name="description" content="&lt;h3 id=&#34;1-基本方法&#34;&gt;&lt;a href=&#34;#1-基本方法&#34; class=&#34;headerlink&#34; title=&#34;1.基本方法&#34;&gt;&lt;/a&gt;1.基本方法&lt;/h3&gt;&lt;p&gt;朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.&lt;/p&gt;">
     <meta name="keywords" content="">
 
     
@@ -16,17 +16,17 @@
     <meta property="og:locale" content="cn,en,ja,default" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content= "第4章 朴素贝叶斯法 | Seeyourmind"  />
-    <meta property="og:description" content= "Seeyourmind" />
+    <meta property="og:description" content= "&lt;h3 id=&#34;1-基本方法&#34;&gt;&lt;a href=&#34;#1-基本方法&#34; class=&#34;headerlink&#34; title=&#34;1.基本方法&#34;&gt;&lt;/a&gt;1.基本方法&lt;/h3&gt;&lt;p&gt;朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.&lt;/p&gt;" />
     <meta property="og:url" content="http://example.com/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="FZY" />
     <meta property="article:publisher" content="" />
-    <meta property="og:description" content="Seeyourmind" />
+    <meta property="og:description" content="&lt;h3 id=&#34;1-基本方法&#34;&gt;&lt;a href=&#34;#1-基本方法&#34; class=&#34;headerlink&#34; title=&#34;1.基本方法&#34;&gt;&lt;/a&gt;1.基本方法&lt;/h3&gt;&lt;p&gt;朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.&lt;/p&gt;" />
     <meta name="twitter:title" content="第4章 朴素贝叶斯法 | Seeyourmind"/>
-    <meta name="twitter:description" content="Seeyourmind"/>
+    <meta name="twitter:description" content="&lt;h3 id=&#34;1-基本方法&#34;&gt;&lt;a href=&#34;#1-基本方法&#34; class=&#34;headerlink&#34; title=&#34;1.基本方法&#34;&gt;&lt;/a&gt;1.基本方法&lt;/h3&gt;&lt;p&gt;朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.&lt;/p&gt;"/>
     <script type="application/ld+json">
         {
-            "description": "Seeyourmind",
+            "description": "&lt;h3 id=&#34;1-基本方法&#34;&gt;&lt;a href=&#34;#1-基本方法&#34; class=&#34;headerlink&#34; title=&#34;1.基本方法&#34;&gt;&lt;/a&gt;1.基本方法&lt;/h3&gt;&lt;p&gt;朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.&lt;/p&gt;",
             "author": { "@type": "Person", "name": "FZY" },
             "@type": "BlogPosting",
             "url": "http://example.com/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/index.html",
@@ -183,7 +183,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl2n1undc000kvwtx3qvcc017" class="article article-type-post" itemscope
+    <article id="post-cl2q6aw750012iwtx1l9eh04j" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -234,6 +234,7 @@
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
             <h3 id="1-基本方法"><a href="#1-基本方法" class="headerlink" title="1.基本方法"></a>1.基本方法</h3><p>朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.</p>
+<span id="more"></span>
 <p>先学习先验概率分布$P(Y&#x3D;c_k)$及条件概率分布$P(X&#x3D;x|Y&#x3D;c_k)&#x3D;P(X^{(1)}&#x3D;x^{(1)},X^{(2)}&#x3D;x^{(2)},\cdots,X^{(N)}&#x3D;x^{(n)}|Y&#x3D;c_k)$从而得到联合概率分布$P(X,Y)$<br>由于条件概率分布有指数级数量的参数，所以对条件概率分布做了<strong>条件独立性假设</strong><code>用于分类的特征在类确定的条件下都是条件独立的</code>：$P(X&#x3D;x|Y&#x3D;c_k)&#x3D;P(X^{(1)}&#x3D;x^{(1)},X^{(2)}&#x3D;x^{(2)},\cdots,X^{(N)}&#x3D;x^{(n)}|Y&#x3D;c_k)&#x3D;\prod_{j&#x3D;1}^n{P(X^j&#x3D;x^j|Y&#x3D;c_k)}$<br>分类器：$y&#x3D;f(x)&#x3D;\arg\max_{c_k}\frac{P(Y&#x3D;c_k)\Pi_{j}P(X^{j}&#x3D;x^j|Y&#x3D;c_k)}{\sum_k{P(Y&#x3D;c_k)\Pi_{j}P(X^{j}&#x3D;x^j|Y&#x3D;c_k)}}$</p>
 <p><strong>后验概率最大化的含义</strong></p>
 <p>期望风险最小化准则变为了后验概率最大化准则<br>$$<br>\begin{align}<br>f(x)&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}\sum_{k&#x3D;1}^K{L(c_k,y)P(c_k|X&#x3D;x)}\<br>&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}\sum_{k&#x3D;1}^K{P(y\neq c_k|X&#x3D;x)}\<br>&amp;&#x3D;\arg\min_{y\in\mathcal{Y}}{(1-P(y&#x3D;c_k|X&#x3D;x))}\<br>&amp;&#x3D;\arg\max_{y\in\mathcal{Y}}{P(y&#x3D;c_k|X&#x3D;x)}\<br>\end{align}<br>$$</p>
@@ -265,19 +266,19 @@
     
 <nav class="article-nav">
   
-    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC5%E7%AB%A0%20%E5%86%B3%E7%AD%96%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          第5章 决策树
+          第3章 K近邻法
         
       </div>
     </a>
   
   
-    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC2%E7%AB%A0%20%E6%84%9F%E7%9F%A5%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">第3章 K近邻法</div>
+      <div class="article-nav-title">第2章 感知机</div>
     </a>
   
 </nav>
