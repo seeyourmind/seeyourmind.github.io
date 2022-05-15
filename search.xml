@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Git使用教程</title>
+      <link href="/2022/05/15/Git-skils/"/>
+      <url>/2022/05/15/Git-skils/</url>
+      
+        <content type="html"><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><blockquote><p>在本地安装好Git</p></blockquote><h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><span id="more"></span><pre><code class="bash">git init            # 初始化git add .            # 上传所有文件到缓存区git status -s        # 查看缓存区文件状态git rm -r --cache &lt;文件名&gt;    # 清除缓冲区文件git commit -m &#39;&#39;    # 上传日志git branch -M main            # 转换branch</code></pre><h1 id="Git远程连接GitHub"><a href="#Git远程连接GitHub" class="headerlink" title="Git远程连接GitHub"></a>Git远程连接GitHub</h1><h2 id="ssh-keygen常用命令"><a href="#ssh-keygen常用命令" class="headerlink" title="ssh-keygen常用命令"></a>ssh-keygen常用命令</h2><pre><code class="bash">ssh-keygen -t rsa -C &#39;注释&#39; -f &#39;~/.ssh/自定义文件名&#39;# 命令选项-b：指定密钥长度-e：读取openssh的私钥或者公钥文件-C：添加注释-f：指定用来保存密钥的文件名-i：读取未加密的ssh-v2兼容的私钥/公钥文件，然后在标准输出设备上显示openssh兼容的私钥/公钥-l：显示公钥文件的指纹数据-N：提供一个新密语-P：提供（旧）密语-q：静默模式-t：指定要创建的密钥类型</code></pre><blockquote><p><code>ssh-keygen</code>用于在<code>.ssh</code>文件夹下生成私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code><br>GitHub似乎不能识别自定义的文件名，所以为GitHub生成密钥时请使用默认文件名，即不指定-f</p></blockquote><h2 id="在GitHub中配置SSH"><a href="#在GitHub中配置SSH" class="headerlink" title="在GitHub中配置SSH"></a>在GitHub中配置SSH</h2><ol><li>登录GitHub，进入<code>Setting</code></li><li>找到<code>SSH and GPG keys</code>，点击<code>New SSH key</code>，自定义title</li><li>将<code>id_rsa.pub</code>的内容复制到<code>key</code>内<br><img src="/../images/Snipaste_2022-05-15_17-43-21.png" alt="Github设置SSH界面"></li></ol><h2 id="远程连接命令"><a href="#远程连接命令" class="headerlink" title="远程连接命令"></a>远程连接命令</h2><pre><code class="bash">ssh -T git@github.com # 测试是否连接到GitHubgit remote add origin git@github.com:&lt;用户名&gt;/&lt;仓库名&gt;.git  # 链接git remote -v        # 查看已建立的链接git remote rm XX    # 删除链接XXgit push -u origin master    # 上传到GitHub</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>VScode配置Python远程调试</title>
       <link href="/2022/05/03/VScode-Python-Remote/"/>
       <url>/2022/05/03/VScode-Python-Remote/</url>
@@ -52,7 +71,7 @@
       <link href="/2022/05/01/VScode-Git/"/>
       <url>/2022/05/01/VScode-Git/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>本地安装Git，且已在环境变量中配置<br>Windows系统下的使用教程</p></blockquote><h3 id="在VScode中配置Git路径"><a href="#在VScode中配置Git路径" class="headerlink" title="在VScode中配置Git路径"></a>在VScode中配置Git路径</h3><p>在<code>settings.json</code>中添加配置</p><span id="more"></span><pre><code class="json">&quot;git.path&quot;: &quot;%Git安装目录%/Git/cmd/git.exe&quot;,</code></pre><h3 id="在VScode终端中添加Git-Bash"><a href="#在VScode终端中添加Git-Bash" class="headerlink" title="在VScode终端中添加Git Bash"></a>在VScode终端中添加Git Bash</h3><p>由于原有的Git Bash已经弃用，直接在<code>settings.json</code>中间中添加Git Bash路径是无法正确添加的，将得到如下错误信息：</p><blockquote><p>Value is not accepted. Valid values: “PowerShell”, “Windows PowerShell”, “Command Prompt”, “JavaScript Debug Terminal”.</p></blockquote><p>正确的做法是使用用新的规则配置：</p><pre><code class="json">&quot;terminal.integrated.profiles.windows&quot;: &#123;        &quot;Git-Bash&quot;: &#123;            // &quot;source&quot;: &quot;Git Bash&quot;, // 不可使用Git Bash            &quot;icon&quot;: &quot;logo-github&quot;,   // 设置图标，可选            &quot;path&quot;: [                &quot;%Git安装目录%/Git/bin/bash.exe&quot;            ],            &quot;args&quot;: []        &#125;,    &#125;,    &quot;terminal.integrated.defaultProfile.windows&quot;: &quot;Git-Bash&quot;, // 设置为默认，可选</code></pre><h3 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h3><p><code>GitLens</code>: 强大的历史查看功能</p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>本地安装Git，且已在环境变量中配置<br>Windows系统下的使用教程</p></blockquote><h1 id="在VScode中配置Git路径"><a href="#在VScode中配置Git路径" class="headerlink" title="在VScode中配置Git路径"></a>在VScode中配置Git路径</h1><p>在<code>settings.json</code>中添加配置</p><span id="more"></span><pre><code class="json">&quot;git.path&quot;: &quot;%Git安装目录%/Git/cmd/git.exe&quot;,</code></pre><h1 id="在VScode终端中添加Git-Bash"><a href="#在VScode终端中添加Git-Bash" class="headerlink" title="在VScode终端中添加Git Bash"></a>在VScode终端中添加Git Bash</h1><p>由于原有的Git Bash已经弃用，直接在<code>settings.json</code>中间中添加Git Bash路径是无法正确添加的，将得到如下错误信息：</p><blockquote><p>Value is not accepted. Valid values: “PowerShell”, “Windows PowerShell”, “Command Prompt”, “JavaScript Debug Terminal”.</p></blockquote><p>正确的做法是使用用新的规则配置：</p><pre><code class="json">&quot;terminal.integrated.profiles.windows&quot;: &#123;        &quot;Git-Bash&quot;: &#123;            // &quot;source&quot;: &quot;Git Bash&quot;, // 不可使用Git Bash            &quot;icon&quot;: &quot;logo-github&quot;,   // 设置图标，可选            &quot;path&quot;: [                &quot;%Git安装目录%/Git/bin/bash.exe&quot;            ],            &quot;args&quot;: []        &#125;,    &#125;,    &quot;terminal.integrated.defaultProfile.windows&quot;: &quot;Git-Bash&quot;, // 设置为默认，可选</code></pre><h1 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h1><p><code>GitLens</code>: 强大的历史查看功能</p>]]></content>
       
       
       <categories>
