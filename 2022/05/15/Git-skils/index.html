@@ -198,7 +198,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl37471f20009k0txczga3pfc" class="article article-type-post" itemscope
+    <article id="post-cl3eh2rhh0004p8tx3jvp0p4m" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -282,6 +282,35 @@ git remote add origin git@github.com:&lt;用户名&gt;/&lt;仓库名&gt;.git  # 
 git remote -v        # 查看已建立的链接
 git remote rm XX    # 删除链接XX
 git push -u origin master    # 上传到GitHub
+</code></pre>
+<h1 id="Git修改commit注释"><a href="#Git修改commit注释" class="headerlink" title="Git修改commit注释"></a>Git修改commit注释</h1><h2 id="修改最后一次提交的commit注释"><a href="#修改最后一次提交的commit注释" class="headerlink" title="修改最后一次提交的commit注释"></a>修改最后一次提交的commit注释</h2><pre><code class="bash">git commit --amend  # 打开nano/vim编辑commit
+git log             # 修改完保存退出，然后打印log查看是否修改成功
+# nano编辑器：如同记事本一样直接删除插入，C^表示Ctrl+，M^表示Alt+
+# vim编辑器： i-insert模式，:wq-保存退出
+</code></pre>
+<h2 id="修改任意一次commit注释"><a href="#修改任意一次commit注释" class="headerlink" title="修改任意一次commit注释"></a>修改任意一次commit注释</h2><p><strong>查看提交日志，确认要修改的提交历史</strong></p>
+<pre><code class="bash">git log
+</code></pre>
+<p><strong>变基操作</strong></p>
+<pre><code class="bash">git rebase -i &lt;commit range&gt;
+# 示例
+git rebase -i HEAD~2    # 表示当前提交到2次以前的提交
+git rebase -i &lt;hash值&gt;  # 表示hash值对应的某次提交
+</code></pre>
+<p><strong>编辑commit</strong></p>
+<blockquote>
+<ol>
+<li>将pick修改为edit</li>
+<li>将原始注释改为新的注释</li>
+<li>保存退出</li>
+</ol>
+</blockquote>
+<p><strong>执行commit修改</strong></p>
+<pre><code class="bash">git commit --amend
+git rebase --continue
+</code></pre>
+<h2 id="修改已经Push到远程的commit注释"><a href="#修改已经Push到远程的commit注释" class="headerlink" title="修改已经Push到远程的commit注释"></a>修改已经Push到远程的commit注释</h2><p>首先把最新版本从远程pull到本地，然后使用上面👆的方法修改，在强制push到远程。</p>
+<pre><code class="bash">git push --force origin master
 </code></pre>
 
         </div>

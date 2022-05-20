@@ -172,7 +172,7 @@
   
     
       <article
-id="post-《统计学习方法》（第二版）/第3章 K近邻法"
+id="post-《统计学习方法》（第二版）/第4章 朴素贝叶斯法"
 class="article article-type-post"
 >
 
@@ -183,14 +183,11 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/">第3章 K近邻法</a>
+        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/">第4章 朴素贝叶斯法</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h3 id="3-1-k-近邻算法-（-k-nearest-neighbor-KNN）"><a href="#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）" class="headerlink" title="3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）"></a>3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）</h3><blockquote>
-<p><strong>输入：</strong>训练集$T&#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$<br><strong>输出：</strong>实例$x$所属类别$y$<br>1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;<br>2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&#x3D;c_j)}$，$I$为指示函数。</p>
-</blockquote>
-<p>是一种基本分类与回归方法，没有显式的学习过程</p>
+        <h3 id="1-基本方法"><a href="#1-基本方法" class="headerlink" title="1.基本方法"></a>1.基本方法</h3><p>朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.</p>
         
     </div>
     </div>
@@ -226,7 +223,7 @@ class="article article-type-post"
   
     
       <article
-id="post-《统计学习方法》（第二版）/第4章 朴素贝叶斯法"
+id="post-《统计学习方法》（第二版）/第3章 K近邻法"
 class="article article-type-post"
 >
 
@@ -237,11 +234,14 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC4%E7%AB%A0%20%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/">第4章 朴素贝叶斯法</a>
+        <a href="/2022/04/10/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/%E7%AC%AC3%E7%AB%A0%20K%E8%BF%91%E9%82%BB%E6%B3%95/">第3章 K近邻法</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h3 id="1-基本方法"><a href="#1-基本方法" class="headerlink" title="1.基本方法"></a>1.基本方法</h3><p>朴素贝叶斯法（naive Bayes）是基于贝叶斯定理与特征条件独立假设的分类法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$.</p>
+        <h3 id="3-1-k-近邻算法-（-k-nearest-neighbor-KNN）"><a href="#3-1-k-近邻算法-（-k-nearest-neighbor-KNN）" class="headerlink" title="3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）"></a>3.1 $k$近邻算法 （$k$-nearest neighbor, KNN）</h3><blockquote>
+<p><strong>输入：</strong>训练集$T&#x3D;{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$<br><strong>输出：</strong>实例$x$所属类别$y$<br>1-根据给定的距离度量，在训练集$T$中找出与$x$最近邻的$k$个点，涵盖这$k$个点的$x$的领域记作$N_k(x)$;<br>2-在$N_k(x)$中根据分类决策规则决定$x$的类别$y$：$y&#x3D;\arg\max_{c_j}\sum_{x_i\in N_k(x)}{I(y_i&#x3D;c_j)}$，$I$为指示函数。</p>
+</blockquote>
+<p>是一种基本分类与回归方法，没有显式的学习过程</p>
         
     </div>
     </div>
