@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>LaTex写作实用技巧</title>
+      <link href="/2022/08/17/LaTex-usetech/"/>
+      <url>/2022/08/17/LaTex-usetech/</url>
+      
+        <content type="html"><![CDATA[<h3 id="multicolumn多列合并导致表格横线不显示"><a href="#multicolumn多列合并导致表格横线不显示" class="headerlink" title="\multicolumn多列合并导致表格横线不显示"></a>\multicolumn多列合并导致表格横线不显示</h3><p>两种解决方法</p><blockquote><ol><li>增加一个宽度为0的列</li><li><code>\vline</code>：由于线的粗细不同，补的横线并不是完美对齐</li></ol></blockquote><span id="more"></span><h3 id="Elsevier模板使用"><a href="#Elsevier模板使用" class="headerlink" title="Elsevier模板使用"></a>Elsevier模板使用</h3><p><strong>添加标题</strong></p><pre><code class="latex">\title[mode=title]&#123;标题，默认设置&#125;\title[mode=alt]&#123;备用标题&#125;\title[mode=sub]&#123;副标题&#125;\title[mode=trans]&#123;翻译标题&#125;\title[mode=transub]&#123;翻译副标题&#125;</code></pre><p><strong>作者信息相关</strong></p><pre><code class="latex">\author[label1]&#123;姓名 \corref&#123;cor1&#125;&#125;\ead&#123;XXX@XXX.com&#125;\address[label1]&#123;地址&#125;\cortext[cor1]&#123;Corresponding author&#125;</code></pre><blockquote><p>只给出最常用🌰<br>更丰富使用技巧请看参考链接</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Using Skills </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LaTeX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第1章 一元函数微积分</title>
       <link href="/2022/06/21/Learning-MathematicsOfMachineLearning-chap1/"/>
       <url>/2022/06/21/Learning-MathematicsOfMachineLearning-chap1/</url>
@@ -35,6 +60,12 @@
       
         <content type="html"><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><blockquote><p>在本地安装好Git</p></blockquote><h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><span id="more"></span><pre><code class="bash">git init            # 初始化git add .            # 上传所有文件到缓存区git status -s        # 查看缓存区文件状态git rm -r --cache &lt;文件名&gt;    # 清除缓冲区文件git commit -m &#39;&#39;    # 上传日志git branch -M main            # 转换branch</code></pre><h1 id="Git远程连接GitHub"><a href="#Git远程连接GitHub" class="headerlink" title="Git远程连接GitHub"></a>Git远程连接GitHub</h1><h2 id="ssh-keygen常用命令"><a href="#ssh-keygen常用命令" class="headerlink" title="ssh-keygen常用命令"></a>ssh-keygen常用命令</h2><pre><code class="bash">ssh-keygen -t rsa -C &#39;注释&#39; -f &#39;~/.ssh/自定义文件名&#39;# 命令选项-b：指定密钥长度-e：读取openssh的私钥或者公钥文件-C：添加注释-f：指定用来保存密钥的文件名-i：读取未加密的ssh-v2兼容的私钥/公钥文件，然后在标准输出设备上显示openssh兼容的私钥/公钥-l：显示公钥文件的指纹数据-N：提供一个新密语-P：提供（旧）密语-q：静默模式-t：指定要创建的密钥类型</code></pre><blockquote><p><code>ssh-keygen</code>用于在<code>.ssh</code>文件夹下生成私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code><br>GitHub似乎不能识别自定义的文件名，所以为GitHub生成密钥时请使用默认文件名，即不指定-f</p></blockquote><h2 id="在GitHub中配置SSH"><a href="#在GitHub中配置SSH" class="headerlink" title="在GitHub中配置SSH"></a>在GitHub中配置SSH</h2><ol><li>登录GitHub，进入<code>Setting</code></li><li>找到<code>SSH and GPG keys</code>，点击<code>New SSH key</code>，自定义title</li><li>将<code>id_rsa.pub</code>的内容复制到<code>key</code>内<br><img src="/../images/Snipaste_2022-05-15_17-43-21.png" alt="Github设置SSH界面"></li></ol><h2 id="远程连接命令"><a href="#远程连接命令" class="headerlink" title="远程连接命令"></a>远程连接命令</h2><pre><code class="bash">ssh -T git@github.com # 测试是否连接到GitHubgit remote add origin git@github.com:&lt;用户名&gt;/&lt;仓库名&gt;.git  # 链接git remote -v        # 查看已建立的链接git remote rm XX    # 删除链接XXgit push -u origin master    # 上传到GitHub</code></pre><h1 id="Git修改commit注释"><a href="#Git修改commit注释" class="headerlink" title="Git修改commit注释"></a>Git修改commit注释</h1><h2 id="修改最后一次提交的commit注释"><a href="#修改最后一次提交的commit注释" class="headerlink" title="修改最后一次提交的commit注释"></a>修改最后一次提交的commit注释</h2><pre><code class="bash">git commit --amend  # 打开nano/vim编辑commitgit log             # 修改完保存退出，然后打印log查看是否修改成功# nano编辑器：如同记事本一样直接删除插入，C^表示Ctrl+，M^表示Alt+# vim编辑器： i-insert模式，:wq-保存退出</code></pre><h2 id="修改任意一次commit注释"><a href="#修改任意一次commit注释" class="headerlink" title="修改任意一次commit注释"></a>修改任意一次commit注释</h2><p><strong>查看提交日志，确认要修改的提交历史</strong></p><pre><code class="bash">git log</code></pre><p><strong>变基操作</strong></p><pre><code class="bash">git rebase -i &lt;commit range&gt;# 示例git rebase -i HEAD~2    # 表示当前提交到2次以前的提交git rebase -i &lt;hash值&gt;  # 表示hash值对应的某次提交</code></pre><p><strong>编辑commit</strong></p><blockquote><ol><li>将pick修改为edit</li><li>将原始注释改为新的注释</li><li>保存退出</li></ol></blockquote><p><strong>执行commit修改</strong></p><pre><code class="bash">git commit --amendgit rebase --continue</code></pre><h2 id="修改已经Push到远程的commit注释"><a href="#修改已经Push到远程的commit注释" class="headerlink" title="修改已经Push到远程的commit注释"></a>修改已经Push到远程的commit注释</h2><p>首先把最新版本从远程pull到本地，然后使用上面👆的方法修改，在强制push到远程。</p><pre><code class="bash">git push --force origin master</code></pre><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>高频命令</p><pre><code class="bash">git log --oneline  # 精简在一行显示一条history记录git log --graph    # 可视化提交的历史git branch [new branch name] [commit id]   # 从历史提交处创建分支</code></pre>]]></content>
       
+      
+      <categories>
+          
+          <category> Using Skills </category>
+          
+      </categories>
       
       
         <tags>
