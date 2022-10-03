@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>第2章 线性代数与矩阵论 | Seeyourmind</title>
+
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。&lt;/p&gt;
+&lt;/blockquote&gt;">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="cn,en,ja,default" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "第2章 线性代数与矩阵论 | Seeyourmind"  />
+    <meta property="og:description" content= "&lt;blockquote&gt;
+&lt;p&gt;线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。&lt;/p&gt;
+&lt;/blockquote&gt;" />
+    <meta property="og:url" content="http://example.com/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="FZY" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。&lt;/p&gt;
+&lt;/blockquote&gt;" />
+    <meta name="twitter:title" content="第2章 线性代数与矩阵论 | Seeyourmind"/>
+    <meta name="twitter:description" content="&lt;blockquote&gt;
+&lt;p&gt;线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。&lt;/p&gt;
+&lt;/blockquote&gt;"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;blockquote&gt;
+&lt;p&gt;线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。&lt;/p&gt;
+&lt;/blockquote&gt;",
+            "author": { "@type": "Person", "name": "FZY" },
+            "@type": "BlogPosting",
+            "url": "http://example.com/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http://example.comundefined"
+            },
+            "name": "FZY"
+            },
+            "headline": "第2章 线性代数与矩阵论 | Seeyourmind",
+            "datePublished": "2022-10-03T09:55:47.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "http://example.com/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>😉</text></svg>">
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1646451311888.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1646451311888.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            gitalk: {
+                enable: true,
+                clientID: "7f65031d09ca001ce168",
+                clientSecret: "886e5d3f9b29dddbae3fa445680cb33d8f8b55eb",
+                repo: "seeyourmind.github.io",
+                owner: "seeyourmind",
+                admin: ["seeyourmind",],
+                distractionFreeMode: true // Facebook-like distraction free mode  // Facebook-like distraction free mode
+            },
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+
+    </script>
+
+    <!--将该代码放入博客模板的head中即可-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            processEscapes: true
+        }
+        });
+    </script>
+    <!--latex数学显示公式-->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>Seeyourmind</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">首页</a>
+                
+                <a href="/archives">归档</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/seeyourmind">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+    <a class="social" target="_blank" href="live:.cid.1f6ac2746d42e0ee">
+        <box-icon type='logo' name='skype'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">首页</a>
+                    
+                    <a href="/archives">归档</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cl8slk3kl000ln8tx9dydeih8" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      第2章 线性代数与矩阵论
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-10-03T09:55:47.000Z" itemprop="datePublished">2022-10-03</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B-%E9%9B%B7%E6%98%8E/">《机器学习的数学》-雷明</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+            </div>
+            
+
+            
+            <div class="article-busuanzi">
+                <span id="busuanzi_value_page_pv">N</span> 人看过
+            </div>
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <blockquote>
+<p>线性代数是多元函数微积分的基础，在机器学习和深度学习中扮演着重要角色，在图论、随机过程中被广泛应用。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="2-1-向量及其运算"><a href="#2-1-向量及其运算" class="headerlink" title="2.1 向量及其运算"></a>2.1 向量及其运算</h2><h3 id="2-1-1-基本概念"><a href="#2-1-1-基本概念" class="headerlink" title="2.1.1 基本概念"></a>2.1.1 基本概念</h3><p>向量（Vector）是具有大小和方向的量，是由多个数构成的一维数组，每个数称为向量的分量，分量的个数称为向量的维数。标量有大小无方向。</p>
+<h3 id="2-1-2-基本运算"><a href="#2-1-2-基本运算" class="headerlink" title="2.1.2 基本运算"></a>2.1.2 基本运算</h3><ul>
+<li>转置（Transpose）：行列位置互换，$x^T$</li>
+<li>加法：对应分量相加，满足交换律和结合律，平行四边形法则</li>
+<li>数乘：标量与每个分量相乘，满足分配律</li>
+<li>內积（Inner product）：对应分量乘积之和，$x\cdot y&#x3D;x^Ty&#x3D;\sum_{i&#x3D;1}^n{x_iy_i}$<br>$$<br>\begin{align}<br>x^Ty&#x3D;y^Tx&amp;,\qquad(Cx)^Ty&#x3D;Cx^Ty\<br>(x+y)^Tz&#x3D;x^Tz+y^Tz&amp;,\qquad z^T(x+y)&#x3D;z^Tx+z^Ty<br>\end{align}<br>$$</li>
+<li>正交（Orthogonal）：內积为0，正交是几何中垂直概念在高维空间的推广</li>
+<li>Hadamard积：对应分量相乘，结果为相同维数的向量，$x\odot y$。它可以简化问题的表述，在反向传播和各种梯度下降法中被使用。</li>
+</ul>
+<h3 id="2-1-3-向量的范数"><a href="#2-1-3-向量的范数" class="headerlink" title="2.1.3 向量的范数"></a>2.1.3 向量的范数</h3><p>向量的范数（Norm）是向量模长的推广，向量的L-p范数是一个标量，定义为<br>$$<br>|x|<em>p&#x3D;\left(\sum</em>{i&#x3D;1}^n|x_i|^p\right)^{1&#x2F;p}<br>$$<br>常用的L1范数是绝对值之和，L2范数（Euclidean Norm）是向量的模长，两者被用于构造正则化项。</p>
+<ul>
+<li>对于非<strong>0</strong>向量，通过数乘向量模的倒数可以将向量单位化（标准化）使其长度为1</li>
+<li>当$p&#x3D;\infin$时，称为$L-\infin$范数，$|x|_\infin&#x3D;\max{x_i}$，是L-p范数的极限</li>
+<li>柯西-施瓦茨Cauchy-Schwarz不等式：$x^Ty\leq|x|\cdot|y|$，<code>L2范数</code></li>
+<li>向量夹角计算公式：$\displaystyle{\cos\theta&#x3D;\frac{x^Ty}{|x|\cdot|y|}}$</li>
+<li>对于长度确定的两个向量，夹角为0时它们的內积最大，夹角为$\pi$时它们的內积最小。这一结论在梯度下降和最速下降法中使用。</li>
+<li>L2范数满足三角不等式：$|x+y|\leq|x|+|y|$</li>
+<li>距离函数：满足非负性，对称性，三角不等式</li>
+</ul>
+<h3 id="2-1-4-解析几何"><a href="#2-1-4-解析几何" class="headerlink" title="2.1.4 解析几何"></a>2.1.4 解析几何</h3><ul>
+<li>超平面（hyperplane）方程：$w^Tx+b&#x3D;0$，$w$法向量</li>
+<li>点到超平面的距离：$\displaystyle{d&#x3D;\frac{|w^Tx+b|}{|w|_2}}$</li>
+</ul>
+<h3 id="2-1-5-线性相关性"><a href="#2-1-5-线性相关性" class="headerlink" title="2.1.5 线性相关性"></a>2.1.5 线性相关性</h3><ul>
+<li>线性组合（Linear Combination）：$x&#x3D;C_1x_1+\cdots+C_nx_n$</li>
+<li>如果存在不全为0的系数是的线性组合为零向量，则这组向量线性相关，否则线性无关（线性独立，Linear Independence）。<code>线性相关意味着这组向量有冗余、最大线性无关的向量子集称为极大线性无关组</code></li>
+</ul>
+<h3 id="2-1-6-向量空间"><a href="#2-1-6-向量空间" class="headerlink" title="2.1.6 向量空间"></a>2.1.6 向量空间</h3><ul>
+<li>向量空间（Vector space，线性空间）对集合内的向量加法和数乘运算封闭</li>
+<li>向量空间的极大线性无关组称为空间的基，基所包含的向量个数称为空间的维数</li>
+<li>基前面的系数称为这组基下的坐标，如果基向量相互正交称为正交基，长度为1的正交基称为标准正交基 <code>格拉姆-施密特Gram-Schmidt正交化：通过向量投影构造垂直向量</code></li>
+</ul>
+<h3 id="2-1-8-应用–支持向量机"><a href="#2-1-8-应用–支持向量机" class="headerlink" title="2.1.8 应用–支持向量机"></a>2.1.8 应用–支持向量机</h3><p>支持向量机（不考虑核函数）是线性分类器的特例，是最大化分类间隔的线性分类器。其目标是寻找一个分类超平面，它不仅能正确地分类每一个样本，并且要使得每一类样本中距离超平面最近的样本到超平面的距离尽可能远，这样有更好的泛化性能。</p>
+<ul>
+<li>基于类别标签的约束：$\displaystyle{y_i(w^Tx_i+b)&gt;0}$</li>
+<li>超平面方程去冗余：$\displaystyle{\min_{x_i}{|w^Tx_i+b|&#x3D;1}}$</li>
+<li>多分类样本到超平面的距离：$\displaystyle{d(w,b)&#x3D;\frac{N}{|w|}}$</li>
+<li>两分类支持向量机求解优化问题可以写成：$\min{\frac{1}{2}w^Tw},\qquad y_i(w^Tx_i+b)\geq1$</li>
+</ul>
+<h2 id="2-2-矩阵及其运算"><a href="#2-2-矩阵及其运算" class="headerlink" title="2.2 矩阵及其运算"></a>2.2 矩阵及其运算</h2><p>实矩阵、复矩阵、方阵、主对角线、对角矩阵（diag，$\Lambda$）、单位矩阵（$I$）、零矩阵、分块矩阵、格拉姆矩阵（Gram，其中的每个元素$G_{ij}$等于向量$x_i$和$x_j$的內积，是一个对称矩阵）</p>
+<h3 id="2-2-2-基本运算"><a href="#2-2-2-基本运算" class="headerlink" title="2.2.2 基本运算"></a>2.2.2 基本运算</h3><ul>
+<li>$(A+B)^T&#x3D;A^T+B^T$</li>
+<li>使用矩阵可以简化线性方程组的表述：$系数矩阵\times x&#x3D;常数矩阵$，增广矩阵</li>
+<li>矩阵乘法与转置满足<em>穿脱原则</em>：$(AB)^T&#x3D;B^TA^T$</li>
+</ul>
+<h3 id="2-2-3-逆矩阵"><a href="#2-2-3-逆矩阵" class="headerlink" title="2.2.3 逆矩阵"></a>2.2.3 逆矩阵</h3><p>逆矩阵对应于标量的倒数运算，对于$n$阶矩阵$A$，如果存在另一个$n$阶矩阵$B$，使得它们的乘积为单位矩阵，即$AB&#x3D;I$</p>
+<ul>
+<li>可逆矩阵也称为非奇异矩阵，不可逆矩阵也称为奇异矩阵。</li>
+<li>如果矩阵可逆，则其逆矩阵唯一。</li>
+<li>矩阵可逆的充分必要条件是满秩。</li>
+<li>$(AB)^{-1}&#x3D;B^{-1}A^{-1}\qquad(A^{-1})^{-1}&#x3D;A\qquad(A^T)^{-1}&#x3D;(A^{-1})^T\qquad(\lambda A)^{-1}&#x3D;\lambda^{-1}A^{-1}$</li>
+<li>可通过初等行变换求矩阵的逆，即将$(A\ I)$转变成$(I\ A^{-1})$</li>
+<li>如果一个方阵满足$AA^T&#x3D;A^TA&#x3D;I$则称为正交矩阵（orthogonal matrix）</li>
+</ul>
+<p><strong>矩阵的秩</strong><br>对于$m\times n$矩阵$A$，秩为矩阵线性无关的行向量或列向量的最大数量。<br>$$<br>r(A)\leq\min(m,n)\qquad r(A)&#x3D;r(A^T)\qquad r(A+B)\leq r(A)+r(B)\qquad r(AB)\leq\min(r(A),r(B))<br>$$</p>
+<p><strong>正交矩阵</strong><br>正交矩阵的行向量均为单位向量且相互正交，构成标准正交基。正交矩阵的乘积、逆矩阵、转置，仍然是为正交矩阵。</p>
+<h3 id="2-2-4-矩阵的范数"><a href="#2-2-4-矩阵的范数" class="headerlink" title="2.2.4 矩阵的范数"></a>2.2.4 矩阵的范数</h3><p>矩阵$W$的范数定义为：$\displaystyle{|W|<em>p&#x3D;\max</em>{x\neq0}\frac{|Wx|<em>p}{|x|<em>p}}$，该范数通过向量的$L-p$范数定义，称为诱导范数（induced Norm），几何意义是矩阵所代表的线性变换对向量进行变换后，向量长度的最大拉伸倍数。<br><strong>谱范数（spectral norm）</strong>：$p&#x3D;2,\qquad\displaystyle{|W|&#x3D;\max</em>{x\neq0}\frac{|Wx|}{|x|}}$<br><strong>F范数（Frobenius norm）</strong>：$\displaystyle{|W|<em>F&#x3D;\sqrt{\sum</em>{i&#x3D;1}^m\sum</em>{j&#x3D;1}^n}w_{ij}^2}$，等价于向量的$L2$范数，将矩阵按行或列展开之后形成向量，然后计算$L2$范数。根据柯西不等式，对于任意$x$，$|Wx|\leq|W|_F\cdot|x|$。如果$x$为非零向量则F范数是谱范数的上界。</p>
+<h3 id="2-2-6-线性变换"><a href="#2-2-6-线性变换" class="headerlink" title="2.2.6 线性变换"></a>2.2.6 线性变换</h3><p>矩阵与向量的乘法可以解释为线性变换（Linear transformation），它将一个向量变成另外一个向量。旋转变换是线性变换，其变换矩阵为正交矩阵；缩放变换是线性变换，其变换矩阵为对角矩阵。</p>
+<h3 id="2-3-行列式"><a href="#2-3-行列式" class="headerlink" title="2.3 行列式"></a>2.3 行列式</h3><p>行列式（Determinant，det）是对矩阵的一种运算，它作用于<strong>方阵</strong>，将其映射成一个标量。</p>
+<h4 id="2-3-1-行列式的定义与性质"><a href="#2-3-1-行列式的定义与性质" class="headerlink" title="2.3.1 行列式的定义与性质"></a>2.3.1 行列式的定义与性质</h4><p>$n$阶方阵$A$的行列式记为$|A|$或$det(A)$，称为$n$阶行列式，计算公式为：<br>$$|A|&#x3D;<br>\begin{vmatrix}<br>    a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\<br>    a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\<br>    \vdots&amp;\vdots&amp;\ddots&amp;\vdots\<br>    a_{n1}&amp;a_{n2}&amp;\cdots&amp;a_{nn}\<br>\end{vmatrix}<br>&#x3D;\sum_{j_1j_2\cdots j_n\in S_n}{(-1)^{\tau(j_1j_2\cdots j_n)}\prod_{i&#x3D;1}^n{a_{i,j_i}}}$$<br>其中$S_n$是$n$个正整数所有排列构成的集合，显然有$n!$种；$\tau(\cdot)$为排列的逆序数，排列中所有逆序的数量成为排列的逆序数。</p>
+<p>行列式可以表示平行四边形与平行六面体的有向面积和体积，也是线性变换的伸缩因子。如果将方阵看做线性变换，则其行列式的绝对值表示该变换导致的体积元变化系数。</p>
+<p><strong>拉普拉斯展开（Laplace Expansion）</strong>：一个行列式可以按照行或列进行递归展开。<br>$$|A|&#x3D;a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}&#x3D;a_{1j}A_{1j}+a_{2j}A_{2j}+\cdots+a_{nj}A_{nj}$$<br>其中$A_{ij}$是去掉矩阵$A$的第$i$行和第$j$列之后的$n-1$阶矩阵的行列式，并且带有符号$(-1)^{i+j}$。称$A_{ij}$为$a_{ij}$的代数余子式，不带符号的子行列式称为余子式。</p>
+<ul>
+<li>存在一行或一列全为0的行列式值为0，对角矩阵的行列式值为对角线元素的乘积，单位矩阵的行列式值为1，上三角或下三角矩阵的行列式值为主对角线元素的乘积。</li>
+<li>行列式具有多线性，可以按照某行或某列的线性组合拆分成两个行列式之和；如果把某一行元素都乘以$k$，则行列式变为之前的$k$倍；矩阵与标量乘法的行列式为$|\alpha A|&#x3D;\alpha^n|A|$。</li>
+<li>如果行列式的两行或列相等，那么行列式值为0。</li>
+<li>如果$|A|\neq0$，则有$A\frac{1}{|A|}A^*&#x3D;I$，因此$A^{-1}&#x3D;\frac{1}{|A|}A^{<em>}$；这也证明了矩阵$A$可逆的充分必要条件是$|A|\neq0$，$A^</em>$为伴随矩阵。</li>
+<li>如果矩阵$A$和$B$是尺寸相同的矩阵，则矩阵乘积的行列式等于行列式的乘积。</li>
+</ul>
+<h2 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h2><h3 id="2-4-1-高斯消元法"><a href="#2-4-1-高斯消元法" class="headerlink" title="2.4.1 高斯消元法"></a>2.4.1 高斯消元法</h3><p>Gaussian Elimination Method 通过将一个方程减掉另一个方程的倍数消除未知数，得到阶梯型方程组（利用初等变换将系数矩阵变成上三角矩阵）</p>
+<h3 id="2-4-2-齐次方程组"><a href="#2-4-2-齐次方程组" class="headerlink" title="2.4.2 齐次方程组"></a>2.4.2 齐次方程组</h3><p>Homogeneous Linear Equations：齐次线性方程组是常数项为0的线性方程组，$Ax&#x3D;0$ 齐次方程一定有解 （$x&#x3D;0$）</p>
+<ul>
+<li>如果$r(A)&#x3D;n$，方程组只有<strong>0</strong>解</li>
+<li>如果$r(A)&lt;n$，方程组有非<strong>0</strong>解</li>
+<li>如果$A$是方阵，$r(A)&lt;n$等同于$A$不可逆</li>
+<li>如果$x_1,\cdots,x_l$都是方程组的解，他们的任意组合$\sum_{i&#x3D;1}^l{k_ix_i}$也是方程组的解：$\displaystyle{A\left(\sum_{i&#x3D;1}^l{k_ix_i}\right)&#x3D;\sum_{i&#x3D;1}^lk_iAx_i&#x3D;\sum_{i&#x3D;1}^lk_i0&#x3D;0}$；如果这组解线性无关且方程组的任意一个解都可以由他们线性表示，则称他们为方程组的一个基础解系</li>
+<li>如果$r(A)&lt;n$，则存在基础解系，且基础解系中包含$n-r(A)$个解</li>
+</ul>
+<p><strong>求解方法</strong><br>对系数矩阵进行初等变换，在得到自由未知数时，将其设为特殊值形成基础解系，然后得到方程组的通解。例如：<br>$<br>\begin{cases}<br>    x_1+2x_2+2x_3+x_4&#x3D;0\<br>    2x_1+x_2-2x_3-2x_4&#x3D;0\<br>    x_1-x_2-4x_3-3x_4&#x3D;0<br>\end{cases}<br>$ $\rightarrow$ $<br>\begin{array}{cccc}<br>    x_1&amp;x_2&amp;x_3&amp;x_4\<br>    \hline<br>    1&amp;0&amp;-2&amp;-5&#x2F;3\<br>    0&amp;1&amp;2&amp;4&#x2F;3\<br>    0&amp;0&amp;0&amp;0\<br>\end{array}$<br>令$x_3&#x3D;1,x_4&#x3D;0$，得基础解系的第一个解：$x_1&#x3D;(2,-2,1,0)^T$<br>令$x_3&#x3D;0,x_4&#x3D;1$，得基础解系的第二个解：$x_2&#x3D;(5&#x2F;3,-4&#x2F;3,0,1)^T$<br>方程组的通解为：$x&#x3D;k_1x_1+k_2x_2$，其中$k_1,k_2$为任意常数</p>
+<h3 id="2-4-3-非齐次方程组"><a href="#2-4-3-非齐次方程组" class="headerlink" title="2.4.3 非齐次方程组"></a>2.4.3 非齐次方程组</h3><p>Non-homogeneous Linear Equations：常数项不全为0，$Ax&#x3D;b$，（利用初等变换将增广矩阵$B$变成上三角矩阵）</p>
+<ul>
+<li>如果$r(A)&#x3D;r(B)$，那么方程组的解存在</li>
+<li>如果$r(A)&lt;r(B)$，那么方程组的解不存在</li>
+<li>方程组有解的前提下，如果$r(A)&#x3D;n$，那么方程组有唯一解；如果$r(A)&lt;n$，那么方程组有无穷解</li>
+<li>如果$x_1,\cdots,x_l$是非齐次方程组对应齐次方程组的基础解系，$x^*$是非齐次方程组的一个解，则$\sum_{i&#x3D;1}^l{k_ix_i+x^*}$是非齐次方程组的解</li>
+</ul>
+<p><strong>求解方法</strong><br>非齐次方程组的解为对应齐次方程组的通解加上非齐次方程组的一个特解（形如$x&#x3D;x^*+k_1x_1+k_2x_2$），特解可以任意选取，通常令自由未知数的值全为0。</p>
+<blockquote>
+<p>自由未知数：矩阵中元素全为0的行对应位置的未知数</p>
+</blockquote>
+<h2 id="2-5-特征值与特征向量-Eigenvalue-Eigenvector"><a href="#2-5-特征值与特征向量-Eigenvalue-Eigenvector" class="headerlink" title="2.5 特征值与特征向量 Eigenvalue Eigenvector"></a>2.5 特征值与特征向量 Eigenvalue Eigenvector</h2><h3 id="2-5-1-特征值与特征向量"><a href="#2-5-1-特征值与特征向量" class="headerlink" title="2.5.1 特征值与特征向量"></a>2.5.1 特征值与特征向量</h3><p>对于$n$阶矩阵$A$，其特征向量是经过这个矩阵的线性变换之后仍然处于同一条直线上的向量（$Ax&#x3D;\lambda x$），$\lambda$为特征值（是特征向量在矩阵的线性变换下的缩放比例），$x$为该特征值对应的特征向量，$A-\lambda I$为特征矩阵，$|A-\lambda I|&#x3D;0$为特征方程，特征方程对应的行列式展开之后是$\lambda$的$n$次多项式，称为矩阵的特征多项式。</p>
+<ul>
+<li>对角矩阵、上&#x2F;下三角矩阵的特征值为主对角线元素</li>
+<li>根据多项式分解定理，特征方程可以写成$\displaystyle{(\lambda-\lambda_1)^{n_1}(\lambda-\lambda_2)^{n_2}\cdots(\lambda-\lambda_{N_\lambda})^{n_{N_\lambda}}&#x3D;0}$，其中$n_i$称为特征值$\lambda_i$的代数重数 Algebraic Multiplicity</li>
+<li>所有$N_\lambda$个不同的特征值构成的集合称为<u>矩阵的谱 Spectrum</u>，其中特征值绝对值的最大值称为谱半径 Spectral Radius</li>
+<li>求解方程组$(A-\lambda_i I)x&#x3D;0$得其特征向量，有$1\le m_i\le n_i$个线性无关解，称$m_i$为$\lambda_i$的几何重数 Geometric Multiplicity</li>
+<li>这些线性无关的解构成的空间称为矩阵$A$关于特征值$\lambda_i$的特征子空间，记为$V_{\lambda_i}$，维数为$m_i&#x3D;n-r(A-\lambda_i I)$，<u>属于不同特征值的特征向量线性无关</u>，矩阵所有线性无关的特征向量的数量为$N_x&#x3D;\sum_{i&#x3D;1}^{N_\lambda}m_i$</li>
+</ul>
+<blockquote>
+<p>阿贝尔-鲁菲尼（Abel-Ruffini）定理指出，4次以上的代数方程没有公式解。因此高阶矩阵的特征值只能求近似解，比起直接求解更好的办法是迭代法。</p>
+</blockquote>
+<p><strong>特征值与矩阵主对角线元素以及行列式的关系</strong></p>
+<ul>
+<li>矩阵的迹 Trace 定义为其主对角线元素之和：$tr(A)&#x3D;\sum_{i&#x3D;1}^n a_{ij}$</li>
+<li>关于迹的公式：$tr(A+B)&#x3D;tr(A)+tr(B)\qquad tr(kA)&#x3D;k\cdot tr(A)\qquad tr(AB)&#x3D;tr(BA)$</li>
+</ul>
+<blockquote>
+<p>根据韦达定理，$n$次方程：$x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0&#x3D;0$ 所有根之和为：$x_1+x_2+\cdots+x_n&#x3D;-c_{n-1}$ 所有根的乘积为：$x_1x_2\cdots x_n&#x3D;(-1)^nc_0$</p>
+</blockquote>
+<ul>
+<li>矩阵所有特征值的和为矩阵的迹：$\sum_{i&#x3D;1}^n\lambda_{i}&#x3D;tr(A)$</li>
+<li>所有特征值的积为矩阵的行列式：$\prod_{i&#x3D;1}^n\lambda_{i}&#x3D;|A|$</li>
+</ul>
+<p><strong>特征值的重要性质</strong></p>
+<ul>
+<li>如果矩阵$A$可逆且$\lambda$为它的特征值，则$\lambda^{-1}$是$A^{-1}$的特征值</li>
+<li>如果$\lambda$是$A$的特征值，则$\lambda^n$是$A^n$的特征值</li>
+<li>如果$\lambda$是$A$的特征值，则$k\lambda$是$kA$的特征值</li>
+<li>如果$\lambda$是$A$的特征值，则$f(\lambda)$是$f(A)$的特征值</li>
+</ul>
+<p><strong>特征向量的重要性质</strong></p>
+<ul>
+<li>如果一组向量是矩阵$A$关于同一个特征值$\lambda$的特征向量，则他们的非零组合仍是矩阵$A$关于$\lambda$的特征向量</li>
+<li><u>实对称矩阵的特征值均为实数，属于不同特征值的特征向量相互正交</u></li>
+</ul>
+<p><strong>共轭矩阵</strong></p>
+<ul>
+<li>$A&#x3D;$ $\begin{pmatrix}<br>  1-i&amp;1\<br>  1&amp;1+i<br>\end{pmatrix}$ $\rightrightarrows$ $\overline{A}&#x3D;$ $\begin{pmatrix}<br>  1+i&amp;1\<br>  1&amp;1-i<br>\end{pmatrix}$</li>
+<li>$\overline{A+B}&#x3D;\overline{A}+\overline{B}\qquad\overline{kA}&#x3D;k\overline{A}\qquad\overline{AB}&#x3D;\overline{A}\ \overline{B}\qquad\overline{(AB)^T}&#x3D;\overline{A}^T\ \overline{B}^T$</li>
+</ul>
+<h3 id="2-5-2-相似变换"><a href="#2-5-2-相似变换" class="headerlink" title="2.5.2 相似变换"></a>2.5.2 相似变换</h3><p>如果有两个矩阵$A$、$B$以及一个可逆矩阵$P$满足 $P^{-1}AP&#x3D;B$ 则称矩阵$A,B$相似，记为$A\sim B$，$P$为相似变换矩阵。<br>相似具有自反性（$A\sim{A}$）、对称性（$A\sim{B}\rightarrow B\sim{A}$）、传递性（$A\sim{B}, B\sim{C} \rightarrow A\sim{C}$）；相似矩阵有相同的特征值，意味着相似变换保持矩阵的特征值不变。<br><strong>矩阵的相似对角化</strong>：$P^{-1}AP&#x3D;\varLambda$ 可以以矩阵$A$的特征向量为列构造一个矩阵$P$，通过它将矩阵对角化，得到以$A$的特征值为主对角线的对角矩阵$\varLambda$。这种做法的成立条件是$P$可逆，即矩阵$A$有$n$个线性无关的特征向量。</p>
+<h3 id="2-5-3-正交变换-（一种特殊的相似变换）"><a href="#2-5-3-正交变换-（一种特殊的相似变换）" class="headerlink" title="2.5.3 正交变换 （一种特殊的相似变换）"></a>2.5.3 正交变换 （一种特殊的相似变换）</h3><p>实对称矩阵一定可以对角化，我们可以构造一个正交的相似变换将其对角化。实对称矩阵属于不同特征值的特征向量是相互正交的，如果用格拉姆-施密特正交化将同一个特征值的所有向量正交化，然后将所有特征向量单位化，可以得到一组标准正交基。以它们构造相似变换矩阵。则矩阵是正交矩阵（满足$P^{-1}&#x3D;P^T$）。（$P^{T}AP&#x3D;\varLambda$）正交变换具有一个优良的性质，它可以保持矩阵的对称性。</p>
+<blockquote>
+<p>P的构造过程：求解矩阵A的所有特征向量，接着对其单位化，然后由这些向量组成矩阵P的列向量。</p>
+</blockquote>
+<p><strong>Householder变换：一种特殊的正交变换</strong><br>Householder矩阵：$P&#x3D;I-2\omega\omega^T&#x3D;I-\frac{uu^T}{H},H&#x3D;\frac{|u|^T}{2},u&#x3D;x\mp|x|e_1$，其中$\omega$是n维非0列向量且有$|\omega|&#x3D;1$，$u$为任意非0向量，$x$为n维列向量，$e_1&#x3D;(1,0,\cdots,0)^T$，显然$P$是对称矩阵且是正交矩阵。<br>$$Px&#x3D;(I-\frac{uu^T}{H})x&#x3D;x-\frac{u}{H}(x\mp|x|e_1)x&#x3D;x-\frac{2u(|x|^2\mp|x|x_1)}{2|x|^2\mp2|x|x_1}&#x3D;x-u&#x3D;\pm|x|e_1$$</p>
+<ul>
+<li>根据上式特性，我们可以构造以Housholder矩阵为基础的正交变换，将矩阵转化为类似对角矩阵的形式，零化主对角线之外的元素（左乘$P$零化第一列，右乘$P$零化第一行）。</li>
+<li>如果是对称矩阵，通过$n-2$次豪斯霍德尔变换可以将$A$化为对称三角矩阵 Tridiagonal Matrix，这种矩阵除主对角线及其上下对角线的元素外，其他元素均为0。</li>
+<li>如果是一般的实数矩阵，由于不对称右乘无法完全零化，通过$n-2$次豪斯霍德尔变换可以将$A$化为上海森堡矩阵 upper-Hessenberg form，这种矩阵除主对角线及其以上和主对角线下面的一条对角线的元素外，其他元素均为0。</li>
+</ul>
+<h3 id="2-5-4-QR算法"><a href="#2-5-4-QR算法" class="headerlink" title="2.5.4 QR算法"></a>2.5.4 QR算法</h3><p><strong>QR分解</strong>：对于一个矩阵$A$，QR分解将其转化为一个正交矩阵$Q$与一个上三角矩阵$R$的乘积。<br><strong>QR算法</strong>：一种迭代算法，从矩阵$A_0&#x3D;A$开始，每次构造一个相似变换，将$A_{k-1}$变换成$A_k$，最后$A_k$收敛到一个上三角矩阵，主对角线元素即为其特征值。<br><strong>QR迭代</strong>:$A_k&#x3D;Q_kR_k\rightarrow A_{k+1}&#x3D;R_kQ_k$，对于实对称矩阵$A$，QR迭代产生的所有正交矩阵$Q_k$的乘积的所有列列为$A$的特征向量。<br><strong>加快收敛速度</strong>：<br>1、带位移的QR算法，迭代公式为$A_k-s_kI&#x3D;Q_kR_k\rightarrow A_{k+1}&#x3D;R_kQ_k+s_kI$<br>2、Householder变换将$A$化成三角矩阵</p>
+<h3 id="2-5-5-广义特征值"><a href="#2-5-5-广义特征值" class="headerlink" title="2.5.5 广义特征值"></a>2.5.5 广义特征值</h3><p>Generalized Eigenvalue 是特征值的推广，定义于两个矩阵之上，对于方阵$A$和$B$，如果存在一个数$\lambda$及非<strong>0</strong>向量$x$，满足$Ax&#x3D;\lambda Bx$，则称$\lambda$为广义特征值，$x$为广义特征向量；如果矩阵$B$可逆，则$B^{-1}Ax&#x3D;\lambda x$，广义特征值在机器学习中被广泛应用，包括流形学习、谱聚类算法、以及线性判别分析等。</p>
+<h3 id="2-5-6-瑞利商-Rayleigh-Quotient"><a href="#2-5-6-瑞利商-Rayleigh-Quotient" class="headerlink" title="2.5.6 瑞利商 Rayleigh Quotient"></a>2.5.6 瑞利商 Rayleigh Quotient</h3><ul>
+<li>$\displaystyle{R(A,x)&#x3D;\frac{x^TAx}{x^Tx}}$：定义为方阵$A$和非<strong>0</strong>向量$x$的瑞利商，对于任意的非0实数$k$，有$R(A,kx)&#x3D;R(A,x)$，即对向量缩放之后其瑞利商不变，瑞利商存在冗余。</li>
+<li>$x^Tx&#x3D;1$：增加约束确保解的唯一性，消除冗余。</li>
+<li>$\lambda_{min}\le R(A,x)\le\lambda_{max}$：瑞利商的所有极值在矩阵的特征值与特征向量处取得（拉格朗日乘数法证明），在最大特征值处，瑞利商有最大值，最小特征值处有最小值。（其典型应用是主成分分析）</li>
+<li>$\displaystyle{R(A,B,x)&#x3D;\frac{x^TAx}{x^TBx}}$：广义瑞利商的性质和瑞利商基本一致，存在冗余，将向量$x$缩放后瑞利商不变；可以增加约束消除冗余$x^TBx&#x3D;1$。</li>
+<li>$\displaystyle{\frac{x^TAx}{x^TBx}&#x3D;\frac{((C^T)^{-1}y)^TA((C^T)^{-1}y)}{((C^T)^{-1}y)^TCC^T((C^T)^{-1}y)}&#x3D;\frac{y^TC^{-1}A(C^T)^{-1}y}{y^Ty}}$：如果令$B&#x3D;CC^T$（对矩阵$B$的楚列斯基Cholesky分解），$x&#x3D;(C^T)^{-1}y$，则可以将广义瑞利商转化为瑞利商。（线性判别分析的优化目标函数就是广义瑞利商）</li>
+</ul>
+<h3 id="2-5-7-谱范数与特征值的关系"><a href="#2-5-7-谱范数与特征值的关系" class="headerlink" title="2.5.7 谱范数与特征值的关系"></a>2.5.7 谱范数与特征值的关系</h3><p>矩阵$W$的谱范数等于的$W^TW$最大特征值的平方根，即$W$最大的奇异值</p>
+<p>（$|W|_2&#x3D;\max{[\sigma_1, \cdots, \sigma_n]}$）；</p>
+<p>谱范数的平方为瑞利商的最大值（$\displaystyle{|W|<em>2^2&#x3D;\max</em>{x\ne0}&#x3D;\frac{x^TW^TWx}{x^Tx}}$）。</p>
+<h3 id="2-5-8-条件数"><a href="#2-5-8-条件数" class="headerlink" title="2.5.8 条件数"></a>2.5.8 条件数</h3><p>如果矩阵$W$可逆，条件数定义为它的范数与它的逆矩阵范数的乘积（可以是任意范数），$cond(W)&#x3D;|W|\cdot|W^{-1}|$。条件数总是大于等于1的，它决定了矩阵的稳定性，条件数越大则矩阵越接近不可逆矩阵，矩阵越ill-posed。如果使用谱范数，则条件数等于矩阵的最大奇异值与最小奇异值的比值。</p>
+<h3 id="2-5-9-应用——谱归一化与谱正则化"><a href="#2-5-9-应用——谱归一化与谱正则化" class="headerlink" title="2.5.9 应用——谱归一化与谱正则化"></a>2.5.9 应用——谱归一化与谱正则化</h3><blockquote>
+<p><strong>谱正则化 Spectral Regularization</strong>：正则化是机器学习中减轻过拟合的技术，它迫使模型的参数值很小，是模型变得更简单（一般地，简单的模型有更好的泛化性能，奥卡姆剃刀？）。谱正则化用谱范数构造正则项。<br><strong>谱归一化 Spectral Normalization</strong>：通过谱范数对线性映射的矩阵进行谱归一化来确保映射有较小的利普希茨常数，从而保证机器学习模型对输入数据的扰动不敏感。</p>
+</blockquote>
+<p><code>示例</code> 神经网络$f(x)&#x3D;Wx+b$ 如果映射满足Lipschitz条件（将其推广到多元函数，绝对值改为向量的范数），则有$|Wx_1+b-Wx_2+b|&#x3D;|Wx_1-Wx_2|\le K|x_1-x_2|$，假设权重矩阵的谱范数为$\sigma(W)$，归一化后$W_{SN}&#x3D;W&#x2F;\sigma(W)$，然后用谱范数做正则项有目标函数：<br>$$\frac{1}{N}\sum_{i&#x3D;1}^N{L(x_i,y_i)}+\frac{\lambda}{2}\sum_{i&#x3D;1}^l{\sigma(W_i)^2}$$<br>其中$L(x_i,y_i)$为单样本损失函数，为神经网络层数，为对应层权重矩阵；谱正则项由神经网络所有层权重矩阵的谱范数平方和构成，可以防止权重矩阵出现大的谱范数，从而保证神经网络的映射有较小的Lipschitz常数。</p>
+<h2 id="2-6-二次型"><a href="#2-6-二次型" class="headerlink" title="2.6 二次型"></a>2.6 二次型</h2><p>二次型是一种特殊的二次函数，只含有二次项。</p>
+<h3 id="2-6-1-基本概念"><a href="#2-6-1-基本概念" class="headerlink" title="2.6.1 基本概念"></a>2.6.1 基本概念</h3><ul>
+<li>Quadric Form 二次型是由纯二次项构成的函数，即二次齐次多项式，可以写成矩阵形式：$x^TAx$，其中$A$是$n$阶对称矩阵，$x$是一个列向量。</li>
+<li>二次型对应的矩阵：平方项$ax^2$的系数是矩阵的主对角线元素，交叉乘积项$ax_ix_j$的系数由$a_{ij}$与$a_{ji}$均分。<code>实对称矩阵与二次型一一对应</code></li>
+</ul>
+<p><code>示例</code> 二次型 $2x^2-3xy+y^2+z^2$ 对应的矩阵为 $\begin{pmatrix}<br>    2&amp;-1.5&amp;0\<br>    -1.5&amp;1&amp;0\<br>    0&amp;0&amp;1\<br>\end{pmatrix}$</p>
+<h3 id="2-6-2-正定二次型与正定矩阵"><a href="#2-6-2-正定二次型与正定矩阵" class="headerlink" title="2.6.2 正定二次型与正定矩阵"></a>2.6.2 正定二次型与正定矩阵</h3><p>如果一个二次型对于任意非<strong>0</strong>向量$x$都有$x^TAx&gt;0$，则称该二次型为正定（Positive Definite）二次型，矩阵$A$为正定矩阵；如果对于任意非<strong>0</strong>向量$x$都有$x^TAx\ge0$，则称该二次型为半正定（Positive Semi-definite）二次型，矩阵$A$为半正定矩阵；对于任意非<strong>0</strong>向量$x$都有$x^TAx&lt;0$，则称该二次型为负定（Negative Definite）二次型，矩阵$A$为负定矩阵，类似地可以定义半负定；如果不正定也不负定就称为不定。<code>正定二次型被用于多元函数极值的判定法则</code> <code>正定矩阵所有主对角线元素大于0</code></p>
+<p>证明对称矩阵$A$正定可以按照定义进行，也可以：</p>
+<ol>
+<li>矩阵$A$的$n$个特征值$\lambda_1,\cdots,\lambda_n$均大于0：通过正交变换将二次型华为标准型证明。</li>
+<li>存在可逆矩阵$P$使得$A&#x3D;P^TP$：因为可逆，任意非0向量$x$有$Px\neq0$，$x^TAx&#x3D;x^TP^TPx&#x3D;(Px)^T(Px)&gt;0$</li>
+<li>如果$A$是正定矩阵，则$A^T$也是正定矩阵：$(x^TA^Tx)^T&#x3D;x^TAx&gt;0$</li>
+<li>矩阵$A$的所有顺序主子式均为正：顺序主子式是矩阵左上角的子方阵形成的行列式</li>
+</ol>
+<p>对于任意的$m\times n$矩阵$A$，$A^TA$是对称半正定矩阵，$AA^T$也是对称半正定矩阵。</p>
+<p>实对称负定：</p>
+<ol>
+<li>矩阵$A$的$n$个特征值$\lambda_1,\cdots,\lambda_n$均小于0</li>
+<li>存在可逆矩阵$P$使得$A&#x3D;-P^TP$</li>
+<li>矩阵$A$的所有奇数顺序主子式均为负，偶数顺序主子式均为正</li>
+</ol>
+<h3 id="2-6-3-标准型"><a href="#2-6-3-标准型" class="headerlink" title="2.6.3 标准型"></a>2.6.3 标准型</h3><p>标准型指对于任意的$i\neq j$，二次型中项$a_{ij}x_ix_j$的系数均为0，二次型由纯平方项构成，形如 $x^TAx&#x3D;d_1x_1^2+\cdots+d_nx_n^2$。<code>标准型对应的矩阵为对角矩阵</code> 在标准型中，正平方项的个数称为正惯性指数，负平方项的数量为负惯性指数。 <code>二次型的矩阵为对称矩阵，因此一定可以对角化</code> 对于二次型$x^TAx$，通过<strong>正交变换</strong>将$A$化为对角矩阵$A&#x3D;P\Lambda P^T$，从而有$x^TAx&#x3D;x^TP\Lambda P^Tx&#x3D;(P^Tx)^T\Lambda(P^Tx)$，$P$是正交矩阵，如果令$y&#x3D;P^Tx$，则$y^T\Lambda y$是标准型。</p>
+<h2 id="2-7-矩阵分解"><a href="#2-7-矩阵分解" class="headerlink" title="2.7 矩阵分解"></a>2.7 矩阵分解</h2><h3 id="2-7-1-楚列斯基分解Cholesky"><a href="#2-7-1-楚列斯基分解Cholesky" class="headerlink" title="2.7.1 楚列斯基分解Cholesky"></a>2.7.1 楚列斯基分解Cholesky</h3><p>对于$n$阶<strong>对称半正定矩阵</strong>$A$，Cholesky分解将其分解为$n$阶<strong>下三角矩阵</strong>$L$以及其转置的乘积：$A&#x3D;LL^T$。如果$A$是实对称正定矩阵，则分解唯一。<strong>Cholesky分解还可以用于检查矩阵的正定性</strong>，如果一个矩阵不能进行Cholesky分解则说明矩阵不是半正定矩阵，否则为半正定矩阵。</p>
+<h3 id="2-7-2-QR分解"><a href="#2-7-2-QR分解" class="headerlink" title="2.7.2 QR分解"></a>2.7.2 QR分解</h3><p>QR分解（正交三角分解）将矩阵$A$分解为<strong>正交矩阵</strong>$Q$与上三角矩阵$R$的乘积，<code>QR分解是格拉姆-施密特正交化的另外一种表现形式</code>。</p>
+<ol>
+<li>对于任意$n$阶方阵：$A&#x3D;QR$</li>
+<li>对于非方阵，$m&gt;n$：$A&#x3D;QR&#x3D;Q\begin{pmatrix}R_n\0_{(m-n)\times n}\end{pmatrix}$</li>
+<li>对于非方阵，$m&lt;n$：$A&#x3D;QR&#x3D;Q\begin{pmatrix}R_m&amp;B_{m\times(n-m)}\end{pmatrix}$，$B$是一个$m\times(n-m)$的矩阵</li>
+<li>QR分解的三种实现方式：格拉姆-施密特正交化、豪斯霍尔德变换、吉文斯旋转</li>
+</ol>
+<h3 id="2-7-3-特征值分解"><a href="#2-7-3-特征值分解" class="headerlink" title="2.7.3 特征值分解"></a>2.7.3 特征值分解</h3><p>又称为<strong>谱分解</strong>，是<strong>矩阵相似对角化</strong>的另一种表现形式，对于$n$阶<strong>方阵</strong>$A$，如果它有$n$个线性无关的特征向量，则可将其分解为：$A&#x3D;Q\varLambda Q^{-1}$。</p>
+<ol>
+<li>其中$\varLambda$为对角矩阵，对角线元素是$A$的特征值；$Q$的列为$A$的特征向量</li>
+<li>分解充分必要条件：它有$n$个线性无关的特征向量</li>
+<li>如果$A$可以进行特征值分解，且所有特征值都非0，则$A^{-1}&#x3D;Q\varLambda^{-1}Q^{-1}$</li>
+<li>如果$A$可以进行特征值分解，则$f(A)&#x3D;Qf(\varLambda)Q^{-1}$</li>
+</ol>
+<h3 id="2-7-4-奇异值分解SVD"><a href="#2-7-4-奇异值分解SVD" class="headerlink" title="2.7.4 奇异值分解SVD"></a>2.7.4 奇异值分解SVD</h3><p>SVD是特征值分解的推广（思路是对$AA^T$和$A^TA$进行特征值分解），对于任意矩阵均可用特征值与特征向量进行分解：$A&#x3D;U\Sigma V^T$</p>
+<ol>
+<li>$U$为$m$阶正交矩阵，其列为矩阵$A$的左奇异向量，也是$AA^T$的特征向量</li>
+<li>$\Sigma$为$A$的奇异值，是$AA^T$特征值的非负平方根，也是$A^TA$特征值的非负平方根</li>
+<li>$V$为$n$阶正交矩阵，其列为矩阵$A$的右奇异向量，也是$A^TA$的特征向量</li>
+</ol>
+<p><strong>几何意义</strong><br>向量左乘任意矩阵所实现的线性变换可以分解成三次变换$Ax&#x3D;U\Sigma V^Tx$：首先是$V^T$代表的旋转变换，接着是$\Sigma$代表的拉伸变换，最后是$U$代表的旋转变换。</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/2022/10/03/System-skills/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">电脑系统使用过程中常见问题记录</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=第2章 线性代数与矩阵论 - Seeyourmind&url=http%3A%2F%2Fexample.com%2F2022%2F10%2F03%2FLearning-MathematicsOfMachineLearning-chap2%2F">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=第2章 线性代数与矩阵论 - Seeyourmind&u=http%3A%2F%2Fexample.com%2F2022%2F10%2F03%2FLearning-MathematicsOfMachineLearning-chap2%2F">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=第2章 线性代数与矩阵论 - Seeyourmind&url=http://example.com/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+<section class="comments">
+    <div id="gitalk-container"></div>
+</section>
+
+
+
+
+
+
+
+
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Using-Skills/">Using Skills</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VScode%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">VScode使用教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B-%E9%9B%B7%E6%98%8E/">《机器学习的数学》-雷明</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">《统计学习方法》（第二版）</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">专题学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sys-log/" rel="tag">Sys.log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-config/" rel="tag">VScode.config</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-issue/" rel="tag">VScode.issue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/">第2章 线性代数与矩阵论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/03/System-skills/">电脑系统使用过程中常见问题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/LaTex-usetech/">LaTex写作实用技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Learning-MathematicsOfMachineLearning-chap1/">第1章 一元函数微积分</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/15/Git-skils/">Git使用教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Seeyourmind &copy; 2022<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+
+
+
+<script src="/dist/build.js?1646451311888.js"></script>
+
+
+<script src="/dist/custom.js?1646451311888.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
