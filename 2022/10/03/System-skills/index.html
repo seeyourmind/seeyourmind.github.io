@@ -120,6 +120,22 @@
     </script>
     <!--latex数学显示公式-->
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--切换标签页时变化title-->
+    <script type="text/javascript">
+        var OriginTitile = document.title
+        var titleTime;
+        document.addEventListener('visibilitychange', function(){
+            if(document.hidden){
+                document.title = 'o(￣ヘ￣o＃) 哼！你走吧！'
+                clearTimeout(titleTime)
+            }else{
+                document.title = '(*´∇｀*) 你回来啦~';
+                titleTime = setTimeout(function(){
+                    document.title = OriginTitile
+                }, 2000);
+            }
+        });
+    </script>
 
 <meta name="generator" content="Hexo 6.1.0"></head>
 
@@ -351,6 +367,15 @@ reboot
 shutdown -r
 shutdown -r 10    # 10分钟后重启
 shutdown -r -f    # 重启时跳过文件系统检查（fsck）
+</code></pre>
+<h2 id="添加路由映射"><a href="#添加路由映射" class="headerlink" title="添加路由映射"></a>添加路由映射</h2><pre><code class="bash"># 打印路由表
+netstat -rn     
+# 添加路由映射
+sudo ip route add 10.23.242.0/24 via 222.28.47.1 dev enp5s0
+</code></pre>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre><code class="bash"># adduser[deluser]: 自动创建用户的指定主目录、系统shell版本、用户密码
+# useradd[userdel]: 需要配合参数完成上述配置
+adduser [username]  # 用户主目录默认为`/home/$&#123;用户名&#125;`, shell默认为`/bin/bash`
 </code></pre>
 <h1 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h1><h2 id="重装系统（U盘启动器版）"><a href="#重装系统（U盘启动器版）" class="headerlink" title="重装系统（U盘启动器版）"></a>重装系统（U盘启动器版）</h2><h3 id="制作U盘启动器"><a href="#制作U盘启动器" class="headerlink" title="制作U盘启动器"></a>制作U盘启动器</h3><blockquote>
 <ol>

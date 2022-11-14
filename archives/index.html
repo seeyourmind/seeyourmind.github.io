@@ -75,6 +75,22 @@
     </script>
     <!--latex数学显示公式-->
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--切换标签页时变化title-->
+    <script type="text/javascript">
+        var OriginTitile = document.title
+        var titleTime;
+        document.addEventListener('visibilitychange', function(){
+            if(document.hidden){
+                document.title = 'o(￣ヘ￣o＃) 哼！你走吧！'
+                clearTimeout(titleTime)
+            }else{
+                document.title = '(*´∇｀*) 你回来啦~';
+                titleTime = setTimeout(function(){
+                    document.title = OriginTitile
+                }, 2000);
+            }
+        });
+    </script>
 
 <meta name="generator" content="Hexo 6.1.0"></head>
 

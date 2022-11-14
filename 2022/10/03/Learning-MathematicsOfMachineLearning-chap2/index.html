@@ -120,6 +120,22 @@
     </script>
     <!--latex数学显示公式-->
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--切换标签页时变化title-->
+    <script type="text/javascript">
+        var OriginTitile = document.title
+        var titleTime;
+        document.addEventListener('visibilitychange', function(){
+            if(document.hidden){
+                document.title = 'o(￣ヘ￣o＃) 哼！你走吧！'
+                clearTimeout(titleTime)
+            }else{
+                document.title = '(*´∇｀*) 你回来啦~';
+                titleTime = setTimeout(function(){
+                    document.title = OriginTitile
+                }, 2000);
+            }
+        });
+    </script>
 
 <meta name="generator" content="Hexo 6.1.0"></head>
 
@@ -432,7 +448,7 @@
 <h3 id="2-7-2-QR分解"><a href="#2-7-2-QR分解" class="headerlink" title="2.7.2 QR分解"></a>2.7.2 QR分解</h3><p>QR分解（正交三角分解）将矩阵$A$分解为<strong>正交矩阵</strong>$Q$与上三角矩阵$R$的乘积，<code>QR分解是格拉姆-施密特正交化的另外一种表现形式</code>。</p>
 <ol>
 <li>对于任意$n$阶方阵：$A&#x3D;QR$</li>
-<li>对于非方阵，$m&gt;n$：$A&#x3D;QR&#x3D;Q\begin{pmatrix}R_n\0_{(m-n)\times n}\end{pmatrix}$</li>
+<li>对于非方阵，$m&gt;n$：$A&#x3D;QR&#x3D;Q\begin{pmatrix}R_n \ 0_{(m-n)\times n}\end{pmatrix}$</li>
 <li>对于非方阵，$m&lt;n$：$A&#x3D;QR&#x3D;Q\begin{pmatrix}R_m&amp;B_{m\times(n-m)}\end{pmatrix}$，$B$是一个$m\times(n-m)$的矩阵</li>
 <li>QR分解的三种实现方式：格拉姆-施密特正交化、豪斯霍尔德变换、吉文斯旋转</li>
 </ol>
