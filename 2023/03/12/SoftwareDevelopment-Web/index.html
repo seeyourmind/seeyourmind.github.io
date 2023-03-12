@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>记一次基于Neo4j的网站开发经历 | Seeyourmind</title>
+
+    <meta name="description" content="&lt;h1 id=&#34;项目使用的技术栈&#34;&gt;&lt;a href=&#34;#项目使用的技术栈&#34; class=&#34;headerlink&#34; title=&#34;项目使用的技术栈&#34;&gt;&lt;/a&gt;项目使用的技术栈&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;名称&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;作用端&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;开发文档&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Neo4j&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;知识图谱处理数据库&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88745411&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Vue-Element-Admin&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;前端静态页面&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://panjiachen.github.io/vue-element-admin-site/zh/&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Flask&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Python后端接口设计&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://flask.net.cn/quickstart.html&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Gunicorn&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;WSGI HTTP服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102716258&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Nginx&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;代理服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/34943332&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="cn,en,ja,default" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "记一次基于Neo4j的网站开发经历 | Seeyourmind"  />
+    <meta property="og:description" content= "&lt;h1 id=&#34;项目使用的技术栈&#34;&gt;&lt;a href=&#34;#项目使用的技术栈&#34; class=&#34;headerlink&#34; title=&#34;项目使用的技术栈&#34;&gt;&lt;/a&gt;项目使用的技术栈&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;名称&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;作用端&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;开发文档&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Neo4j&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;知识图谱处理数据库&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88745411&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Vue-Element-Admin&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;前端静态页面&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://panjiachen.github.io/vue-element-admin-site/zh/&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Flask&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Python后端接口设计&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://flask.net.cn/quickstart.html&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Gunicorn&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;WSGI HTTP服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102716258&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Nginx&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;代理服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/34943332&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;" />
+    <meta property="og:url" content="http://example.com/2023/03/12/SoftwareDevelopment-Web/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="FZY" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;h1 id=&#34;项目使用的技术栈&#34;&gt;&lt;a href=&#34;#项目使用的技术栈&#34; class=&#34;headerlink&#34; title=&#34;项目使用的技术栈&#34;&gt;&lt;/a&gt;项目使用的技术栈&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;名称&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;作用端&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;开发文档&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Neo4j&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;知识图谱处理数据库&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88745411&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Vue-Element-Admin&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;前端静态页面&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://panjiachen.github.io/vue-element-admin-site/zh/&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Flask&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Python后端接口设计&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://flask.net.cn/quickstart.html&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Gunicorn&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;WSGI HTTP服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102716258&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Nginx&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;代理服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/34943332&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;" />
+    <meta name="twitter:title" content="记一次基于Neo4j的网站开发经历 | Seeyourmind"/>
+    <meta name="twitter:description" content="&lt;h1 id=&#34;项目使用的技术栈&#34;&gt;&lt;a href=&#34;#项目使用的技术栈&#34; class=&#34;headerlink&#34; title=&#34;项目使用的技术栈&#34;&gt;&lt;/a&gt;项目使用的技术栈&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;名称&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;作用端&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;开发文档&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Neo4j&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;知识图谱处理数据库&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88745411&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Vue-Element-Admin&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;前端静态页面&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://panjiachen.github.io/vue-element-admin-site/zh/&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Flask&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Python后端接口设计&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://flask.net.cn/quickstart.html&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Gunicorn&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;WSGI HTTP服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102716258&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Nginx&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;代理服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/34943332&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;h1 id=&#34;项目使用的技术栈&#34;&gt;&lt;a href=&#34;#项目使用的技术栈&#34; class=&#34;headerlink&#34; title=&#34;项目使用的技术栈&#34;&gt;&lt;/a&gt;项目使用的技术栈&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;名称&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;作用端&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;开发文档&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Neo4j&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;知识图谱处理数据库&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88745411&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Vue-Element-Admin&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;前端静态页面&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://panjiachen.github.io/vue-element-admin-site/zh/&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Flask&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Python后端接口设计&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://flask.net.cn/quickstart.html&#34;&gt;中文文档&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Gunicorn&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;WSGI HTTP服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102716258&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;Nginx&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;代理服务器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/34943332&#34;&gt;参考介绍&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;",
+            "author": { "@type": "Person", "name": "FZY" },
+            "@type": "BlogPosting",
+            "url": "http://example.com/2023/03/12/SoftwareDevelopment-Web/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http://example.comundefined"
+            },
+            "name": "FZY"
+            },
+            "headline": "记一次基于Neo4j的网站开发经历 | Seeyourmind",
+            "datePublished": "2023-03-12T08:24:04.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "http://example.com/2023/03/12/SoftwareDevelopment-Web/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>😉</text></svg>">
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1646451311888.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1646451311888.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            gitalk: {
+                enable: true,
+                clientID: "7f65031d09ca001ce168",
+                clientSecret: "886e5d3f9b29dddbae3fa445680cb33d8f8b55eb",
+                repo: "seeyourmind.github.io",
+                owner: "seeyourmind",
+                admin: ["seeyourmind",],
+                distractionFreeMode: true // Facebook-like distraction free mode  // Facebook-like distraction free mode
+            },
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+
+    </script>
+
+    <!--将该代码放入博客模板的head中即可-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            processEscapes: true
+        }
+        });
+    </script>
+    <!--latex数学显示公式-->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--切换标签页时变化title-->
+    <script type="text/javascript">
+        var OriginTitile = document.title
+        var titleTime;
+        document.addEventListener('visibilitychange', function(){
+            if(document.hidden){
+                document.title = 'o(￣ヘ￣o＃) 哼！你走吧！'
+                clearTimeout(titleTime)
+            }else{
+                document.title = 'ヾ(≧∇≦*)ゝ 你回来啦~';
+                titleTime = setTimeout(function(){
+                    document.title = OriginTitile
+                }, 2000);
+            }
+        });
+    </script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>Seeyourmind</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">首页</a>
+                
+                <a href="/archives">归档</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/seeyourmind">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+    <a class="social" target="_blank" href="live:.cid.1f6ac2746d42e0ee">
+        <box-icon type='logo' name='skype'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">首页</a>
+                    
+                    <a href="/archives">归档</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-clf54tg27000srctx3xb6e5gg" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      记一次基于Neo4j的网站开发经历
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2023-03-12T08:24:04.000Z" itemprop="datePublished">2023-03-12</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">软件开发记录</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag">Web开发</a></li></ul>
+            </div>
+            
+
+            
+            <div class="article-busuanzi">
+                <span id="busuanzi_value_page_pv">N</span> 人看过
+            </div>
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h1 id="项目使用的技术栈"><a href="#项目使用的技术栈" class="headerlink" title="项目使用的技术栈"></a>项目使用的技术栈</h1><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">作用端</th>
+<th align="center">开发文档</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Neo4j</td>
+<td align="center">知识图谱处理数据库</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/88745411">参考介绍</a></td>
+</tr>
+<tr>
+<td align="center">Vue-Element-Admin</td>
+<td align="center">前端静态页面</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin-site/zh/">中文文档</a></td>
+</tr>
+<tr>
+<td align="center">Flask</td>
+<td align="center">Python后端接口设计</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://flask.net.cn/quickstart.html">中文文档</a></td>
+</tr>
+<tr>
+<td align="center">Gunicorn</td>
+<td align="center">WSGI HTTP服务器</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102716258">参考介绍</a></td>
+</tr>
+<tr>
+<td align="center">Nginx</td>
+<td align="center">代理服务器</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34943332">参考介绍</a></td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h1 id="Neo4j"><a href="#Neo4j" class="headerlink" title="Neo4j"></a>Neo4j</h1><p>Neo4j依赖JAVA环境，所以在正式安装Neo4j之前应先确保本机正确配置的Java环境。</p>
+<h2 id="配置Java环境"><a href="#配置Java环境" class="headerlink" title="配置Java环境"></a>配置Java环境</h2><pre><code class="bash"># 1. 下载JDK：http://www.codebaoku.com/jdk/jdk-index.html
+Example: jdk-15.0.2_linux-x64_bin.tar.gz
+# 2. 解压
+tar -xzvf jdk-8u131-linux-x64.tar.gz
+# 3. 查看Java安装位置 &gt;表示输出结果
+which java
+&gt; /usr/local/jdk/jdk-15.0.2/bin/java
+# 4.1 配置环境变量
+vim /etc/profile
+# 4.2 在文件末尾添加
+export JAVA_HOME=/usr/local/jdk/jdk-15.0.2
+export CLASSPATH=.:JAVA_HOME/lib:$&#123;CLASSPATH&#125;
+export PATH=$JAVA_HOME/bin:$PATH
+# 4.3 退出保存
+sudo source /etc/profile
+# 4.4 验证
+java -version
+&gt; java version &quot;15.0.2&quot; 2021-01-19
+&gt; Java(TM) SE Runtime Environment (build 15.0.2+7-27)
+&gt; Java HotSpot(TM) 64-Bit Server VM (build 15.0.2+7-27, mixed mode, sharing)
+</code></pre>
+<h2 id="安装Neo4j"><a href="#安装Neo4j" class="headerlink" title="安装Neo4j"></a>安装Neo4j</h2><pre><code class="bash"># 1. 下载Linux安装包
+wget https://neo4j.com/business-subscription/?edition=enterprise&amp;release=4.4.18&amp;flavour=unix
+# 2. 解压
+tar -xzvf neo4j-community-4.4.18-unix.tar.gz
+# 3. 启动
+cd [Neo4j安装目录]/bin
+./neo4j console
+# 4. 浏览器中访问 http://localhost:7474
+# 账号密码默认都是neo4j
+</code></pre>
+<h2 id="项目中额外的配置"><a href="#项目中额外的配置" class="headerlink" title="项目中额外的配置"></a>项目中额外的配置</h2><p>项目采用<a target="_blank" rel="noopener" href="https://py2neo.org/2021.1/"><code>py2neo</code></a>访问和操作Neo4j，基于Apoc插件对数据进行导入与导出操作</p>
+<h3 id="安装Apoc插件"><a href="#安装Apoc插件" class="headerlink" title="安装Apoc插件"></a>安装Apoc插件</h3><p>去<a target="_blank" rel="noopener" href="https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases">GitHub</a>上下载对应版本的jar包，并将jar放置在Neo4j安装目录里的plugins文件夹下。</p>
+<blockquote>
+<p>本项目使用的是apoc-4.4.0.14-all.jar<br>可以在Neo4j的web端使用return apoc.version()查看是否安装成功</p>
+</blockquote>
+<h3 id="修改Neo4j的配置文件"><a href="#修改Neo4j的配置文件" class="headerlink" title="修改Neo4j的配置文件"></a>修改Neo4j的配置文件</h3><pre><code class="ini"># 文件路径：[Neo4j安装根目录]/bin/conf/config.ini
+dbms.default_listen_address=0.0.0.0
+
+dbms.security.procedures.unrestricted=algo.*
+dbms.security.procedures.unrestricted=apoc.*
+apoc.export.file.enabled=true
+apoc.import.file.enabled=true
+</code></pre>
+<h1 id="Vue-Element-Admin"><a href="#Vue-Element-Admin" class="headerlink" title="Vue-Element-Admin"></a>Vue-Element-Admin</h1><p>一个基于vue和<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN">element-ui</a>实现的后台前端框架。</p>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><p>安装Node.js，为避免构建项目是发生奇奇怪怪的错误，建议手动安装最新版本</p>
+<pre><code class="bash"># 官网下载：https://nodejs.org/zh-cn/download/
+Exmaple: node-v18.14.2-linux-x64.tar.xz
+# 解压
+tar -xvf node-v16.13.0-linux-x64.tar.xz
+# 建立软连接，变为全局
+ln -s [安装目录]/bin/npm /usr/local/bin
+ln -s [安装目录]/bin/node /usr/local/bin
+# 检验是否为全局
+node -v
+&gt; v18.14.2
+</code></pre>
+<h3 id="下载模板"><a href="#下载模板" class="headerlink" title="下载模板"></a>下载模板</h3><p>去<a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin">Github</a>下载模板</p>
+<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><pre><code class="bash"># 开发阶段
+npm run dev
+# 发布阶段
+npm run build:prod
+# 清理缓存
+npm cache verify
+</code></pre>
+<blockquote>
+<p>如果这里无法完成构建，一般需要卸载并重装最新版nodejs，删除项目中的node_modules、package-lock.json</p>
+</blockquote>
+<h3 id="主要项目目录"><a href="#主要项目目录" class="headerlink" title="主要项目目录"></a>主要项目目录</h3><ul>
+<li><code>mock</code>：可用来生成服务端的模拟数据</li>
+<li><code>src/views</code>：视图文件夹</li>
+<li><code>src/router/index.js</code>：配置页面路由</li>
+</ul>
+<h1 id="Flask和Gunicorn"><a href="#Flask和Gunicorn" class="headerlink" title="Flask和Gunicorn"></a>Flask和Gunicorn</h1><p>直接pip安装即可</p>
+<h2 id="启动一个最简单的Flask服务"><a href="#启动一个最简单的Flask服务" class="headerlink" title="启动一个最简单的Flask服务"></a>启动一个最简单的Flask服务</h2><pre><code class="python"># 入口文件app.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route(&#39;/&#39;)
+def hello_world():
+    return &#39;Hello, World!&#39;
+
+if __name__ ==&#39;__main__&#39;:
+    app.run(host=&#39;0.0.0.0&#39;, port=5000, debug=True)
+# 运行文件之后可以在http://127.0.0.1:5000访问
+</code></pre>
+<h2 id="本项目布局"><a href="#本项目布局" class="headerlink" title="本项目布局"></a>本项目布局</h2><pre><code>/flask-app
+├── App
+│   ├── __init__.py
+│   ├── settings.py                 # Flask配置文件
+│   ├── api/
+│   │   └── api_test.py             # 自定义API文件：定义blueprint和route
+│   └── models
+│       ├── __init__.py
+│       └── sub_model/
+│               ├── __init__.py
+│               └── model1.py       # 自定义接口所需函数
+├── statics                         # 存放静态数据资源
+│   ├── data1/
+│   ├── data2/
+│   └── data3/
+└── app.py                          # 项目入口文件
+</code></pre>
+<h2 id="Gunicorn"><a href="#Gunicorn" class="headerlink" title="Gunicorn"></a>Gunicorn</h2><p><strong>为什么需要Gunicorn或uWSGI？</strong></p>
+<blockquote>
+<p>由于Flask自带的wsgi性能低，仅适用于调试开发阶段，在真实线上必须用Gunicorn+Nginx获得更好的性能和安全性，其本质是为了提升服务器并发处理能力。</p>
+</blockquote>
+<p><strong>为什么有了Gunicorn还需要再套一层Nginx？</strong></p>
+<blockquote>
+<p>Nginx更安全Nginx能更好地处理静态资源（通过一些http request header），Nginx也可以缓存一些动态内容；Nginx可以更好地配合CDN，可以进行多台机器的负载均衡；不需要在wsgi server那边处理keep alive，让Nginx来处理slow client；还有一个更隐蔽的区别是，像uWSGI支持的是wsgi协议，Nginx支持的是http协议，它们之间是有区别的。<br>一台服务器同时运行多服务或者前后端分离时，可以用Nginx来分发。</p>
+</blockquote>
+<p><strong>使用Gunicorn启动Flask应用</strong></p>
+<pre><code class="bash">gunicorn -w 4 -t 300 -b 0.0.0.0:5000 app:app
+# 停止gunicorn：从gunicorn绑定的端口下手来killgunicorn进程
+# 1. 查看PID
+lsof -i:5000
+# 2. kill线程
+kill [PID]
+</code></pre>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="bash"># 安装
+sudo apt update  # 更新安装源
+sudo apt install nginx
+# 验证
+sudo systemctl status nginx
+# 启动 停止 重启
+sudo systemctl start/stop/restart nginx
+# 测试启动
+http://localhost
+</code></pre>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41070393/article/details/113977572">配置</a></h2><h3 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h3><ul>
+<li><code>/etc/nginx/nginx.conf</code>：主配置文件</li>
+<li><code>/etc/nginx/conf.d/*.conf</code>：独立配置Server，通过引用的方式调用</li>
+<li><code>/etc/nginx/sites-enabled/*.*</code>：Nginx会加载该目录下任何名称的配置文件</li>
+<li><code>/etc/nginx/sites-available/*.*</code>：用于存放网站的配置文件，意为可用的网站列表，用于在需要时链接到<code>sites-enabled</code>中作为需要启用的网站。</li>
+</ul>
+<h3 id="本项目的配置"><a href="#本项目的配置" class="headerlink" title="本项目的配置"></a>本项目的配置</h3><p><strong>部署前端</strong></p>
+<pre><code class="bash"># 发布Vue
+npm run build:prod
+# 将生成dist目录：其中静态文件为[static、favicon.ico、index.html]
+# 可以选择移动或是复制到一个单独的路径，也可以直接使用dist路径
+# 在本项目中我是选择了前者
+mv dist [项目路径]/web
+</code></pre>
+<p><strong>部署后端</strong><br>使用Gunicorn启动Flask</p>
+<p><strong>修改Nginx服务配置</strong></p>
+<pre><code class="ini"># /etc/nginx/conf.d/myApp.com.conf
+server &#123;
+    listen 80;  # 监听端口
+    server_name XXXXXXXX.imdo.co;  # 花生壳内网穿透域名
+    charset utf-8;
+    client_max_body_size 75M;
+    # 前端-Vue-Element-Admin
+    location / &#123;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    root  [项目路径]/web;  # 站点的根目录
+    try_files $uri $uri/ /index.html;
+    index  /index.html;
+    &#125;
+    # 后端-Flask+Gunicorn
+    location /api/ &#123;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    add_header Access-Control-Allow-Methods *;
+        add_header Access-Control-Allow-Origin $http_origin;
+        proxy_pass http://127.0.0.1:5000/;
+        # 设置超时，默认30s，避免后台响应时间长触发504错误
+        proxy_connect_timeout 300s;
+        proxy_send_timeout 300s;
+        proxy_read_timeout 300s;
+    &#125;
+&#125;
+</code></pre>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">第2章 线性代数与矩阵论</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=记一次基于Neo4j的网站开发经历 - Seeyourmind&url=http%3A%2F%2Fexample.com%2F2023%2F03%2F12%2FSoftwareDevelopment-Web%2F">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=记一次基于Neo4j的网站开发经历 - Seeyourmind&u=http%3A%2F%2Fexample.com%2F2023%2F03%2F12%2FSoftwareDevelopment-Web%2F">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=记一次基于Neo4j的网站开发经历 - Seeyourmind&url=http://example.com/2023/03/12/SoftwareDevelopment-Web/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+<section class="comments">
+    <div id="gitalk-container"></div>
+</section>
+
+
+
+
+
+
+
+
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Using-Skills/">Using Skills</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VScode%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">VScode使用教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B-%E9%9B%B7%E6%98%8E/">《机器学习的数学》-雷明</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89/">《统计学习方法》（第二版）</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%93%E9%A2%98%E5%AD%A6%E4%B9%A0/">专题学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E5%90%8E%E6%84%9F/">读后感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">软件开发记录</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LaTeX/" rel="tag">LaTeX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sys-log/" rel="tag">Sys.log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-config/" rel="tag">VScode.config</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VScode-issue/" rel="tag">VScode.issue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag">Web开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/12/SoftwareDevelopment-Web/">记一次基于Neo4j的网站开发经历</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/03/Learning-MathematicsOfMachineLearning-chap2/">第2章 线性代数与矩阵论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/03/System-skills/">电脑系统使用过程中常见问题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/LaTex-usetech/">LaTex写作实用技巧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Learning-MathematicsOfMachineLearning-chap1/">第1章 一元函数微积分</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Seeyourmind &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+
+
+
+<script src="/dist/build.js?1646451311888.js"></script>
+
+
+<script src="/dist/custom.js?1646451311888.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
