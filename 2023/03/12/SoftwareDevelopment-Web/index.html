@@ -364,7 +364,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-clf54tg27000srctx3xb6e5gg" class="article article-type-post" itemscope
+    <article id="post-clfi9w28p000ja0tx3o4p19qp" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -563,12 +563,17 @@ if __name__ ==&#39;__main__&#39;:
 <p>Nginx更安全Nginx能更好地处理静态资源（通过一些http request header），Nginx也可以缓存一些动态内容；Nginx可以更好地配合CDN，可以进行多台机器的负载均衡；不需要在wsgi server那边处理keep alive，让Nginx来处理slow client；还有一个更隐蔽的区别是，像uWSGI支持的是wsgi协议，Nginx支持的是http协议，它们之间是有区别的。<br>一台服务器同时运行多服务或者前后端分离时，可以用Nginx来分发。</p>
 </blockquote>
 <p><strong>使用Gunicorn启动Flask应用</strong></p>
-<pre><code class="bash">gunicorn -w 4 -t 300 -b 0.0.0.0:5000 app:app
-# 停止gunicorn：从gunicorn绑定的端口下手来killgunicorn进程
-# 1. 查看PID
+<pre><code class="bash"># 1.启动
+gunicorn -w 4 -t 300 -b 0.0.0.0:5000 app:app
+# 2.查看状态
+# 使用树形结构查看PID
+pstree -ap|grep gunicorn
+# 根据端口查看PID
 lsof -i:5000
-# 2. kill线程
-kill [PID]
+# 3.重启
+kill -HUP [master_PID]
+# 4.关闭
+kill -9 [master_PID]
 </code></pre>
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="bash"># 安装
 sudo apt update  # 更新安装源
@@ -626,6 +631,18 @@ server &#123;
         proxy_send_timeout 300s;
         proxy_read_timeout 300s;
     &#125;
+&#125;
+</code></pre>
+<p><strong>Gzip配置</strong><br>由于<code>vue</code>打包之后的<code>chunk-libs.js</code>文件过大导致前端页面加载过慢，一种简单的处理方式是<strong>Nginx服务器配置静态压缩</strong></p>
+<pre><code class="ini">server&#123;
+    # 将下面的内容直接合并到/etc/nginx/conf.d/myApp.com.conf的server&#123;&#125;中
+    gzip on;
+    gzip_static on;
+    gzip_min_length 1k;
+    gzip_comp_level 9;
+    gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    gzip_vary on;
+    gzip_disable &quot;MSIE [1-6]\.&quot;;
 &#125;
 </code></pre>
 
