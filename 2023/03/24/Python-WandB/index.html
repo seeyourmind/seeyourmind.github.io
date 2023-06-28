@@ -199,7 +199,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cljf33leb000658tx2334da8f" class="article article-type-post" itemscope
+    <article id="post-cljf4qygn000vp4tx7fqsbejd" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -301,10 +301,30 @@ run.finish()
 </blockquote>
 <p><strong>3.启动docker镜像</strong></p>
 <pre><code class="bash"># 确保8080端口没有被占用，占用了就换别的端口
-sudo docker run --rm -d -e LOCAL_RESTORE=true -e HOST=http://&lt;your host&gt;:8080 -e LICENSE=&lt;your license&gt; -p 8080:8080 --name wandb-local wandb/local
+sudo docker run --rm -d -e LOCAL_RESTORE=true -e HOST=http://&lt;your host&gt;:&lt;your port&gt; -e LICENSE=&lt;your license&gt; -p &lt;your port&gt;:8080 --name wandb-local wandb/local
 </code></pre>
-<p><strong>4.登录</strong></p>
-<pre><code class="bash">wandb local -p 8080 -e LOCAL_RESTORE=true
+<p><strong>4.创建用户</strong><br>网页创建</p>
+<blockquote>
+<p>打开网站 http:&#x2F;&#x2F;<your_host>:<your_port>，创建账户<br>如果无法创建，可以根据<a target="_blank" rel="noopener" href="https://github.com/wandb/server/issues/44#issuecomment-962156373">这里</a>进行修复</p>
+</blockquote>
+<p>手动创建，更多细节详见<a target="_blank" rel="noopener" href="https://github.com/wandb/local/issues/66">这里</a></p>
+<pre><code class="bash"># login the container
+docker exec -it wandb-local bash
+ 
+vi /vol/env/users.htpasswd  
+# delete the line contain local@wandb.com
+ 
+/usr/local/bin/local password &lt;your add username&gt;
+# input your password
+exit
+</code></pre>
+<p><strong>5.登录</strong><br>浏览器：</p>
+<blockquote>
+<p>http:&#x2F;&#x2F;<your host>:8080&#x2F;home</p>
+</blockquote>
+<p>Shell：</p>
+<pre><code class="bash">wandb login --host=http://&lt;your host&gt;:8080 &lt;your api key&gt;
+# wandb local -p 8080 -e LOCAL_RESTORE=true
 </code></pre>
 
         </div>
